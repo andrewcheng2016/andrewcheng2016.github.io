@@ -1,0 +1,27 @@
+/* p5-theme.css - Nuclear Option */
+
+/* 1. 針對所有元素發動攻擊 */
+* {
+    background-color: transparent !important; /* 讓所有東西變透明，露出底下的黑色 */
+    color: #fff !important; /* 所有文字變白 */
+    font-family: 'Courier New', sans-serif !important; /* 測試字體 */
+}
+
+/* 2. 設定最底層的地板 */
+html, body {
+    background-color: #000 !important; /* 純黑背景 */
+    background-image: none !important;
+    height: 100%;
+}
+
+/* 3. 讓圖片顯示出來 (不然會被上面的 * 變透明) */
+img, video, iframe {
+    background-color: transparent !important;
+    opacity: 1 !important;
+}
+
+/* 4. 強制讓連結變紅 */
+a {
+    color: #ff0000 !important;
+    text-decoration: underline;
+}
