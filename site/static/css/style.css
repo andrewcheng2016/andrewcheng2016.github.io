@@ -1,0 +1,14 @@
+/* style.css - 確保全部重設 */
+body, .bg-off-white, .bg-grey-1, .bg-white {
+    background-color: #000 !important; /* 強制全黑 */
+    background-image: none !important;
+    color: #fff !important;
+}
+
+h1, h2, h3, h4, p, span, div {
+    color: #fff !important; /* 強制全白字 */
+}
+
+a {
+    color: #d61821 !important; /* 強制紅連結 */
+}
