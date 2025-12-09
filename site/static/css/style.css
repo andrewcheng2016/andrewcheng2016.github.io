@@ -1,14 +1,57 @@
-/* style.css - 確保全部重設 */
-body, .bg-off-white, .bg-grey-1, .bg-white {
-    background-color: #000 !important; /* 強制全黑 */
-    background-image: none !important;
+/* Persona 5 Final Override */
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&display=swap');
+
+/* 1. 核爆全域設定：強制黑底白字 */
+html, body, .main-content, .bg-white, .bg-off-white, .bg-grey-1, .bg-light-gray {
+    background-color: #111 !important;
+    background-image: repeating-linear-gradient(45deg, #151515 0, #151515 10px, #1a1a1a 10px, #1a1a1a 20px) !important;
+    color: #f2f2f2 !important;
+    font-family: 'Teko', sans-serif !important;
+}
+
+/* 2. 讓所有文字強制變白 (除了連結) */
+h1, h2, h3, h4, p, li, span, div {
+    color: #f2f2f2 !important;
+}
+
+/* 3. 連結與按鈕：P5 紅 */
+a, a:link, a:visited, .btn, button {
+    color: #d61821 !important;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+a:hover, .btn:hover {
+    background-color: #d61821 !important;
     color: #fff !important;
+    transform: skew(-10deg);
 }
 
-h1, h2, h3, h4, p, span, div {
-    color: #fff !important; /* 強制全白字 */
+/* 4. 導航列與頁腳 */
+nav, footer, .bg-black {
+    background-color: #000 !important;
+    border-top: 2px solid #d61821;
+    border-bottom: 2px solid #d61821;
 }
 
-a {
-    color: #d61821 !important; /* 強制紅連結 */
+/* 5. 圖片與輸入框處理 */
+img {
+    border: 2px solid #333;
+    padding: 5px;
+    background: #000;
+}
+
+input, textarea {
+    background: #222 !important;
+    color: #fff !important;
+    border: 1px solid #d61821 !important;
+}
+
+/* 6. 修正標題歪斜風格 */
+h1, h2 {
+    background: #000;
+    display: inline-block;
+    padding: 5px 20px !important;
+    transform: skew(-5deg);
+    border-left: 5px solid #d61821;
 }

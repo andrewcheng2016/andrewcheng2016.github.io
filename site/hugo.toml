@@ -10,5 +10,4 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
 [params]
 images = ["img/og-image.jpg"]
-[params]
-custom_css = ["style.css"]
+custom_css = ["css/style.css"]
