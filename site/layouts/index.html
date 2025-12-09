@@ -1,26 +1,27 @@
 {{ define "main" }}
 
-<!-- 歡迎區塊 -->
+<!-- 歡迎區塊 (增加 stars 裝飾) -->
 <section class="hero">
+    <div class="stars-bg"></div> <!-- 裝飾背景用 -->
     <h1>{{ .Site.Params.description }}</h1>
 </section>
 
 <div class="dual-column-layout">
     
     <!-- 左邊：玩具格納庫 (Toys) -->
-    <section class="category-section">
+    <section class="category-section" style="border-color: #d91c24;"> <!-- 強制紅色邊框 -->
         <div class="section-header">
-            <h2>🧸 玩具格納庫</h2>
-            <a href="/toys" class="view-more">View All</a>
+            <!-- 加上 P5 風格的 Tarot Card 文字感 -->
+            <h2>🧸 TOY <span style="color: #d91c24;">ARSENAL</span></h2>
+            <a href="/toys" class="view-more">TAKE YOUR HEART ></a>
         </div>
         <div class="card-grid">
-            <!-- 抓取 toys 資料夾的前 4 篇文章 -->
             {{ range first 4 (where .Site.RegularPages "Section" "toys") }}
             <article class="post-card">
                 <div class="post-content">
                     <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                    <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
-                    <p>{{ .Summary | truncate 60 }}</p>
+                    <div class="post-meta">{{ .Date.Format "2006.01.02" }}</div>
+                    <p>{{ .Summary | truncate 50 }}</p>
                 </div>
             </article>
             {{ end }}
@@ -28,19 +29,18 @@
     </section>
 
     <!-- 右邊：論文研讀 (Papers) -->
-    <section class="category-section">
+    <section class="category-section" style="border-color: #000;">
         <div class="section-header">
-            <h2>📄 論文研讀</h2>
-            <a href="/papers" class="view-more">View All</a>
+            <h2>📄 PAPER <span style="color: #666;">LOGS</span></h2>
+            <a href="/papers" class="view-more">CONFIDANT RANK ></a>
         </div>
         <div class="card-grid">
-            <!-- 抓取 papers 資料夾的前 4 篇文章 -->
             {{ range first 4 (where .Site.RegularPages "Section" "papers") }}
             <article class="post-card">
                 <div class="post-content">
                     <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                    <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
-                    <p>{{ .Summary | truncate 60 }}</p>
+                    <div class="post-meta">{{ .Date.Format "2006.01.02" }}</div>
+                    <p>{{ .Summary | truncate 50 }}</p>
                 </div>
             </article>
             {{ end }}
