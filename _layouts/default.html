@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | Phantom Thieves</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1 class="site-title">PHANTOM ARCHIVES</h1>
+        <br>
+        <p class="subtitle">Take Your Papers & Toys</p>
+    </header>
+
+    <div class="container">
+        {{ content }}
+    </div>
+
+    <!-- 這裡可以保留 Netlify 驗證腳本 -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+</body>
+</html>

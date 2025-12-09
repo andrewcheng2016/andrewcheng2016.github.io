@@ -1,13 +1,34 @@
-baseurl = "/"
-languageCode = "en-us"
-languageLang = "en"
-title = "Kaldi"
+baseURL = "/"
+languageCode = "zh-tw" # 改成繁體中文
+title = "Andrew's Collection" # 網站標題
 
-# RSS, categories and tags disabled for an easy start
-# See configuration options for more details: 
-# https://gohugo.io/getting-started/configuration/#toml-configuration
-disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+# 禁用不需要的功能
+disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [params]
-images = ["img/og-image.jpg"]
-custom_css = ["css/style.css"]
+  # 網站描述
+  description = "Andrew 的玩具收藏與論文筆記"
+  # 這裡不放圖片，避免出現那個巨大的 Hero Image
+  # featured_image = "" 
+  
+  # CSS 樣式表路徑
+  custom_css = ["css/style.css"]
+
+  # 設定網站主要顏色 (雖然我們會用 CSS 覆蓋，但這裡設一下比較安全)
+  body_classes = "avenir bg-near-white"
+
+# --- 這裡定義你的兩個新區域 ---
+[[menu.main]]
+  name = "玩具格納庫"
+  url = "/toys"
+  weight = 1
+
+[[menu.main]]
+  name = "論文研讀"
+  url = "/papers"
+  weight = 2
+
+[[menu.main]]
+  name = "關於我"
+  url = "/about"
+  weight = 3

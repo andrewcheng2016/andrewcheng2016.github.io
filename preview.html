@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P5 Style Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==================== 
+           核心變數與基礎設定 
+           ==================== */
+        :root {
+            --p5-red: #d91826;
+            --p5-black: #000000;
+            --p5-white: #f2f2f2;
+            --p5-yellow: #fff100;
+            --p5-grey: #2b2b2b;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--p5-white);
+            background-image: radial-gradient(var(--p5-grey) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--p5-black);
+            font-family: 'Roboto Slab', serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* 背景紅色大斜切塊 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 120%;
+            background: var(--p5-red);
+            transform: skewX(-20deg) translateX(-30%);
+            z-index: -2;
+        }
+
+        /* ==================== 
+           P5 日期時鐘組件 (左上角)
+           ==================== */
+        .phantom-ui-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            font-family: 'Bangers', cursive;
+            filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.5));
+        }
+
+        /* 旋轉的幾何背景 (模擬時鐘) */
+        .clock-spinner {
+            width: 80px;
+            height: 80px;
+            background: var(--p5-black);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            position: absolute;
+            left: -10px;
+            animation: spin 10s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .clock-spinner::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            background: var(--p5-white);
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 日期區塊 */
+        .date-box {
+            background: var(--p5-black);
+            color: var(--p5-white);
+            padding: 5px 20px 5px 60px; /* 左邊留給 spinner */
+            font-size: 1.5rem;
+            transform: skewX(-15deg);
+            border: 2px solid var(--p5-white);
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .date-month { font-size: 1rem; color: var(--p5-yellow); margin-right: 5px;}
+        .date-day { font-size: 1.8rem; line-height: 1;}
+
+        /* 時間區塊 */
+        .time-box {
+            background: var(--p5-white);
+            color: var(--p5-black);
+            padding: 5px 15px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            transform: skewX(-15deg);
+            margin-left: -5px; /* 重疊一點 */
+            border: 2px solid var(--p5-black);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* 星期幾的標籤 */
+        .weather-tag {
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            background: var(--p5-red);
+            color: var(--p5-white);
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            transform: rotate(5deg);
+            border: 1px solid white;
+        }
+
+        /* ==================== 
+           主頁面內容 
+           ==================== */
+        header {
+            padding: 100px 20px 40px; /* 上方留空間給時鐘 */
+            text-align: center;
+        }
+
+        h1.site-title {
+            font-family: 'Bangers', cursive;
+            font-size: 5rem;
+            color: var(--p5-white);
+            background: var(--p5-black);
+            display: inline-block;
+            padding: 10px 40px;
+            transform: rotate(-3deg) skewX(-10deg);
+            box-shadow: 8px 8px 0px var(--p5-yellow);
+            letter-spacing: 3px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        p.subtitle {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            background: var(--p5-white);
+            color: var(--p5-red);
+            display: inline-block;
+            padding: 5px 20px;
+            transform: rotate(2deg) translateY(-20px);
+            border: 3px solid var(--p5-black);
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.8);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(-3deg) skewX(-10deg) translateY(0); }
+            50% { transform: rotate(-3deg) skewX(-10deg) translateY(-10px); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .btn {
+            background: var(--p5-black);
+            color: var(--p5-white);
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            padding: 12px 35px;
+            text-decoration: none;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 彈跳效果 */
+        }
+
+        .btn:hover {
+            background: var(--p5-red);
+            color: var(--p5-yellow);
+            transform: scale(1.15) rotate(-2deg);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            box-shadow: 0 0 15px var(--p5-red);
+        }
+
+        /* 網格與卡片 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--p5-white);
+            border: 4px solid var(--p5-black);
+            transition: 0.3s;
+            transform: rotate(-1deg);
+            box-shadow: 10px 10px 0px var(--p5-black);
+            opacity: 0; /* 初始隱藏，給動畫用 */
+            animation: slideUp 0.6s forwards;
+        }
+
+        /* 卡片進場動畫 (依序出現) */
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.3s; }
+        .card:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px) rotate(5deg); }
+            to { opacity: 1; transform: translateY(0) rotate(-1deg); }
+        }
+
+        .card:hover {
+            transform: rotate(1deg) scale(1.03) !important; /* 強制覆蓋動畫結束狀態 */
+            box-shadow: 15px 15px 0px var(--p5-red);
+            z-index: 10;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Bangers';
+            font-size: 1.5rem;
+            border-bottom: 4px solid var(--p5-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 模擬圖片上的雜訊紋理 */
+        .card-img::before {
+            content: "";
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(0,0,0,0.1),
+                rgba(0,0,0,0.1) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+        }
+
+        .card-content { padding: 20px; position: relative; }
+
+        .tag {
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            background: var(--p5-yellow);
+            color: var(--p5-black);
+            font-family: 'Bangers';
+            padding: 5px 15px;
+            transform: rotate(5deg);
+            border: 2px solid var(--p5-black);
+            box-shadow: 3px 3px 0 var(--p5-red);
+        }
+
+        .card h3 {
+            font-family: 'Bangers';
+            font-size: 1.8rem;
+            margin: 5px 0;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            border-left: 4px solid var(--p5-red);
+            padding-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- P5 左上角動態時鐘 -->
+    <div class="phantom-ui-container">
+        <!-- 轉動的星星/齒輪 -->
+        <div class="clock-spinner"></div>
+        
+        <!-- 日期顯示 -->
+        <div class="date-box">
+            <span class="weather-tag" id="day-text">SUN</span>
+            <span class="date-month" id="month-text">11/</span>
+            <span class="date-day" id="date-text">24</span>
+        </div>
+        
+        <!-- 時間顯示 -->
+        <div class="time-box" id="time-text">
+            10:30
+        </div>
+    </div>
+
+    <!-- 網站標頭 -->
+    <header>
+        <h1 class="site-title">PHANTOM ARCHIVES</h1>
+        <br>
+        <p class="subtitle">Take Your Papers & Toys</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="filters">
+            <a href="#" class="btn">ALL TARGETS</a>
+            <a href="#" class="btn">PAPERS</a>
+            <a href="#" class="btn">TOYS</a>
+        </div>
+
+        <div class="grid">
+            <!-- 測試卡片 1 -->
+            <div class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #444, #000);">
+                    (IMG: GUNDAM)
+                </div>
+                <div class="card-content">
+                    <span class="tag">TOYS</span>
+                    <h3>RG Sazabi Build</h3>
+                    <p>The finest mobile suit from Char Aznable. Detailed painting process inside...</p>
+                </div>
+            </div>
+
+            <!-- 測試卡片 2 -->
+            <div class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #d91826, #000);">
+                    (IMG: PAPER)
+                </div>
+                <div class="card-content">
+                    <span class="tag">PAPERS</span>
+                    <h3>LLM Research</h3>
+                    <p>Analysis of the latest GPT-4 architecture and its impact on coding...</p>
+                </div>
+            </div>
+
+            <!-- 測試卡片 3 -->
+            <div class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #fff100, #d91826);">
+                    (IMG: FIGURE)
+                </div>
+                <div class="card-content">
+                    <span class="tag">LIFE</span>
+                    <h3>Tokyo Trip</h3>
+                    <p>Visiting Akihabara and hunting for rare figures in Nakano Broadway...</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            
+            // 星期幾對照表
+            const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+            const dayName = days[now.getDay()];
+
+            // 取得月、日
+            const month = now.getMonth() + 1; // 0-11 to 1-12
+            const date = now.getDate();
+
+            // 取得時、分
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            
+            // 補零 (例如 9 變成 09)
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            // hours = hours < 10 ? '0' + hours : hours; // 如果想要 24小時制補零可打開
+
+            // 更新 HTML 內容
+            document.getElementById('day-text').innerText = dayName;
+            document.getElementById('month-text').innerText = month + '/';
+            document.getElementById('date-text').innerText = date;
+            document.getElementById('time-text').innerText = hours + ':' + minutes;
+        }
+
+        // 每秒更新一次
+        setInterval(updateTime, 1000);
+        
+        // 頁面載入時先執行一次，避免剛打開有一秒延遲
+        updateTime();
+    </script>
+
+</body>
+</html>

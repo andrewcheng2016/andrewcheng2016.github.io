@@ -1,0 +1,13 @@
+title: "TAKE YOUR HEART"
+description: "Papers & Toys Collection"
+theme: jekyll-theme-prime
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+collections:
+  posts:
+    output: true
+
+# 記得確認這裡還是你的網址
+url: "https://andrewcheng2016.github.io"

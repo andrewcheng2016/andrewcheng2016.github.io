@@ -1,78 +1,117 @@
-/* P5 Style - Refined (優化版) */
+/* P5 Style - Blog Card Layout */
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600&display=swap');
 
-/* 1. 全局基礎：黑底白字 */
+/* 1. 基礎設定：背景與字體 */
 body {
     background-color: #111 !important;
-    background-image: repeating-linear-gradient(45deg, #151515 0, #151515 10px, #1a1a1a 10px, #1a1a1a 20px) !important;
-    color: #eee !important;
+    background-image: repeating-linear-gradient(45deg, #111 0, #111 10px, #1a1a1a 10px, #1a1a1a 20px) !important;
     font-family: 'Teko', sans-serif !important;
-    font-size: 1.2rem;
+    color: #eee !important;
 }
 
-/* 2. 隱藏原本那個醜醜的大 Logo */
-a.db.grow.no-underline {
-    display: none !important; 
-}
-/* 或者如果上面的無效，用這個隱藏圖片 */
-nav img, header img {
+/* 2. 徹底隱藏那個醜醜的 Kaldi Logo */
+a.db.grow.no-underline, .dib.grow {
     display: none !important;
 }
-
-/* 3. 限制內容寬度 (像 P5 的對話框) */
-.center, .mw9, .ph3, main {
-    max-width: 1000px !important;
-    margin: 0 auto !important;
-}
-
-/* 4. 文字顏色強制修正 */
-h1, h2, h3, h4, p, li, div {
-    color: #eee !important;
-}
-
-/* 5. 讓標題有 P5 風格 */
-h1, h2 {
-    background: #000;
-    color: #fff !important;
-    padding: 10px 20px !important;
-    transform: skew(-10deg);
-    border-left: 6px solid #d61821;
-    display: inline-block;
-    margin-top: 30px;
-}
-
-/* 6. 連結與按鈕 */
-a, a:visited {
-    color: #d61821 !important;
-    text-decoration: none;
+/* 強制顯示文字標題 */
+.site-title-override {
+    display: block !important;
+    font-size: 2rem;
+    color: #d61821;
     font-weight: bold;
+    padding: 10px;
+    transform: skew(-10deg);
 }
-a:hover {
+
+/* 3. 文章列表：卡片式設計 (這是你要的重點) */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 針對文章容器 */
+article, .mb3-l, .mb4-l {
+    background-color: #222 !important; /* 卡片背景深灰 */
+    border: 1px solid #d61821 !important; /* 紅色邊框 */
+    margin-bottom: 30px !important;
+    padding: 20px !important;
+    transform: skew(-2deg); /* 微微歪斜 */
+    box-shadow: 5px 5px 0px #000;
+    transition: transform 0.2s;
+}
+
+/* 滑鼠移過去的效果 */
+article:hover {
+    transform: skew(-2deg) translate(-5px, -5px);
+    box-shadow: 10px 10px 0px #d61821;
+}
+
+/* 4. 文字顏色修正 */
+h1, h2, h3, a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+/* 標題紅底風格 */
+h1.f2, h1.f1 {
+    background: #000;
+    color: #d61821 !important;
+    display: inline-block;
+    padding: 10px 30px;
+    transform: skew(-10deg);
+    border-left: 8px solid #d61821;
+}
+
+/* 5. 摘要文字 */
+p, .f5 {
+    color: #ccc !important;
+    font-family: sans-serif; /* 內文用好讀的字體 */
+    line-height: 1.6;
+}
+
+/* 6. 按鈕樣式 */
+.ba, .b--black-10 {
+    border-color: #d61821 !important;
+    color: #d61821 !important;
+    background: transparent;
+    text-transform: uppercase;
+}
+.ba:hover {
     background-color: #d61821 !important;
     color: #fff !important;
 }
 
-/* 7. 去掉白色背景塊 */
-.bg-white, .bg-off-white, .bg-near-white, .bg-grey-1 {
-    background-color: transparent !important;
-}
-
-/* 8. 導航列美化 */
+/* 7. 導航列修正 */
 nav {
+    background: rgba(0,0,0,0.9) !important;
     border-bottom: 2px solid #d61821;
-    padding: 20px 0;
-    text-align: right; /* 選單靠右 */
+    padding: 1rem;
 }
 
-/* 9. 顯示你的名字 (用 CSS 偽元素加上去) */
-nav:before {
-    content: "Andrew's Collection"; /* 這裡可以改你的網站名 */
-    float: left;
-    color: #fff;
-    font-size: 2rem;
-    font-weight: bold;
-    transform: skew(-10deg);
-    background: #d61821;
-    padding: 0 10px;
-    margin-left: 20px;
+/* --- 清洗剩餘垃圾專用 --- */
+
+/* 1. 隱藏 Newsletter (訂閱電子報) 區塊 */
+.bg-near-black, .pa4-l, form, input[type="email"] {
+    display: none !important;
+}
+
+/* 2. 隱藏頁腳那些奇怪的連結 (Social media, Find out more) */
+footer ul, footer li, footer .db {
+    display: none !important;
+}
+
+/* 3. 但要保留我們自己的版權宣告 (如果有的話) */
+footer .copy-right {
+    display: block !important;
+}
+
+/* 4. 確保文章列表依然顯示 (因為上面可能誤傷無辜) */
+main, article, .pa3, .pa4 {
+    display: block !important;
+}
+
+/* 5. 調整首頁標題大小，不要那麼巨大 */
+h1.f2.f1-m.f-headline-l {
+    font-size: 3rem !important; /* 縮小一點 */
+    margin-top: 20px;
 }

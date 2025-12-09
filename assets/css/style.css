@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Slab:wght@400;700&display=swap');
+
+:root {
+    --p5-red: #d91826; /* P5 主題紅 */
+    --p5-black: #000000;
+    --p5-white: #f2f2f2;
+    --p5-yellow: #fff100; /* 點綴用 */
+    --p5-grey: #2b2b2b;
+}
+
+body {
+    margin: 0;
+    background-color: var(--p5-white);
+    /* P5 風格的網點背景 */
+    background-image: radial-gradient(var(--p5-grey) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--p5-black);
+    font-family: 'Roboto Slab', serif; /* P5 對話框常用襯線字 */
+    overflow-x: hidden;
+}
+
+/* 裝飾背景的紅色斜切塊 */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: var(--p5-red);
+    transform: skewX(-20deg) translateX(-20%);
+    z-index: -1;
+}
+
+/* Header - 像怪盜團的預告信 */
+header {
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+}
+
+h1.site-title {
+    font-family: 'Bangers', cursive; /* 漫畫衝擊字體 */
+    font-size: 5rem;
+    color: var(--p5-white);
+    background: var(--p5-black);
+    display: inline-block;
+    padding: 10px 30px;
+    transform: rotate(-5deg) skewX(-10deg);
+    box-shadow: 5px 5px 0px var(--p5-yellow);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+p.subtitle {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    background: var(--p5-black);
+    color: var(--p5-red);
+    display: inline-block;
+    padding: 5px 15px;
+    transform: rotate(2deg) translateY(-15px);
+    border: 2px solid var(--p5-white);
+}
+
+/* Container */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Filter Buttons - 選單介面風格 */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.btn {
+    background: var(--p5-black);
+    color: var(--p5-white);
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    padding: 10px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    /* P5 經典的不規則形狀 */
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.btn:hover {
+    background: var(--p5-red);
+    color: var(--p5-yellow);
+    transform: scale(1.1) rotate(-2deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Hover 時變回矩形 */
+}
+
+/* Cards (Posts) - 像漫畫分鏡 */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background: var(--p5-white);
+    border: 4px solid var(--p5-black);
+    position: relative;
+    transition: 0.3s;
+    /* 讓每張卡片稍微不同角度 */
+    transform: rotate(-1deg); 
+    box-shadow: 10px 10px 0px var(--p5-black);
+}
+
+.card:hover {
+    transform: rotate(1deg) scale(1.02);
+    box-shadow: 15px 15px 0px var(--p5-red);
+    z-index: 10;
+}
+
+.card-img-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-bottom: 4px solid var(--p5-black);
+    position: relative;
+}
+
+/* 圖片上的覆蓋層效果 */
+.card-img-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,0,0,0.5) 0%, transparent 50%);
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s;
+    filter: grayscale(50%) contrast(120%);
+}
+
+.card:hover .card-img {
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 20px;
+    position: relative;
+}
+
+/* 分類標籤 - 星星或不規則圖形 */
+.tag {
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    background: var(--p5-yellow);
+    color: var(--p5-black);
+    font-family: 'Bangers', cursive;
+    font-size: 1.2rem;
+    padding: 5px 15px;
+    transform: rotate(5deg);
+    border: 2px solid var(--p5-black);
+    box-shadow: 3px 3px 0 var(--p5-red);
+}
+
+.card h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    margin: 10px 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.card h3 a {
+    color: var(--p5-black);
+    text-decoration: none;
+    background-image: linear-gradient(var(--p5-red), var(--p5-red));
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 5px;
+    transition: background-size .3s;
+}
+
+.card:hover h3 a {
+    background-size: 100% 5px;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
+    border-left: 4px solid var(--p5-red);
+    padding-left: 10px;
+    margin-top: 15px;
+}
+
+/* 手機版適配 */
+@media (max-width: 768px) {
+    body::before {
+        width: 100%;
+        transform: skewX(0);
+        height: 300px;
+    }
+    h1.site-title {
+        font-size: 3.5rem;
+    }
+}
