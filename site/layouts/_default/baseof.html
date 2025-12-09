@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
-    <!-- 引入你的 CSS -->
-    <link rel="stylesheet" href="/css/style.css?v=final">
-    <!-- 引入 Google Fonts (現代無襯線體) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 引入你指定的型格字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 引入 CSS -->
+    <link rel="stylesheet" href="/css/style.css?v=cool">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
 
-    <!-- 1. 導航列 (Navbar) -->
+    <!-- 導航列 -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="/" class="brand">{{ .Site.Title }}</a>
@@ -23,14 +28,14 @@
         </div>
     </nav>
 
-    <!-- 2. 主要內容區 (Main Content) -->
-    <main class="main-content">
+    <!-- 主要內容 -->
+    <main>
         {{ block "main" . }}{{ end }}
     </main>
 
-    <!-- 3. 頁腳 (Footer) -->
-    <footer class="footer">
-        <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+    <!-- 簡單的頁腳 -->
+    <footer style="text-align: center; padding: 40px; color: #666; font-family: 'Anton', sans-serif;">
+        <p>&copy; {{ now.Year }} ANDREW'S COLLECTION</p>
     </footer>
 
 </body>
