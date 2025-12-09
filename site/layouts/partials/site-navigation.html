@@ -1,0 +1,17 @@
+<nav class="pa3 pa4-ns" style="background-color: #000; border-bottom: 3px solid #d61821;">
+  <div class="tc pb3">
+    <!-- 這裡直接顯示你的標題，不再有圖片 -->
+    <a href="/" class="link dim f2 f1-ns fw6 ttl tracked" style="color: #fff; background: #000; padding: 5px 15px; transform: skew(-10deg); border-left: 8px solid #d61821; display: inline-block;">
+      {{ .Site.Title }}
+    </a>
+  </div>
+  
+  <div class="tc pb3">
+    <!-- 這裡會自動讀取你在 hugo.toml 設定的選單 -->
+    {{ range .Site.Menus.main }}
+    <a class="link dim f6 f5-ns dib mr3" href="{{ .URL }}" title="{{ .Name }}" style="color: #d61821; font-weight: bold; text-transform: uppercase;">
+      {{ .Name }}
+    </a>
+    {{ end }}
+  </div>
+</nav>

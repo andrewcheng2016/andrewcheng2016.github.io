@@ -1,23 +1,11 @@
 baseURL = "/"
-languageCode = "zh-tw" # 改成繁體中文
-title = "Andrew's Collection" # 網站標題
-
-# 禁用不需要的功能
-disableKinds = ["taxonomy", "taxonomyTerm"]
+languageCode = "zh-tw"
+title = "Andrew's Collection" # 網站標題會顯示在正中間
 
 [params]
-  # 網站描述
-  description = "Andrew 的玩具收藏與論文筆記"
-  # 這裡不放圖片，避免出現那個巨大的 Hero Image
-  # featured_image = "" 
-  
-  # CSS 樣式表路徑
   custom_css = ["css/style.css"]
 
-  # 設定網站主要顏色 (雖然我們會用 CSS 覆蓋，但這裡設一下比較安全)
-  body_classes = "avenir bg-near-white"
-
-# --- 這裡定義你的兩個新區域 ---
+# 你的選單設定
 [[menu.main]]
   name = "玩具格納庫"
   url = "/toys"

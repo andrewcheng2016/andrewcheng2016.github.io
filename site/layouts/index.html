@@ -1,13 +1,37 @@
 {{ define "main" }}
+<main class="center mw9 ph3-ns" style="max-width: 1000px; margin: 0 auto;">
+  
+  <!-- 歡迎區塊 -->
+  <div class="tc pv4">
+    <h1 class="f2" style="color: #fff; border-bottom: 2px solid #d61821; display: inline-block;">
+      {{ .Title }}
+    </h1>
+    <p class="f4" style="color: #ccc;">
+      {{ .Content }}
+    </p>
+  </div>
 
-{{ partial "jumbotron" (dict "imageUrl" .Params.image "title" .Title "subtitle" .Params.subtitle) }}
+  <!-- 文章列表區塊 -->
+  <section class="flex-ns flex-wrap justify-around">
+    {{ range .Site.RegularPages }}
+      <div class="w-100 w-45-ns pa3 mb4" style="background: #222; border: 1px solid #d61821; transform: skew(-2deg); margin: 10px;">
+        <!-- 文章標題 -->
+        <h2 class="f3">
+          <a href="{{ .RelPermalink }}" class="link" style="color: #fff;">
+            {{ .Title }}
+          </a>
+        </h2>
+        <!-- 文章摘要 -->
+        <p style="color: #aaa;">{{ .Summary | truncate 100 }}</p>
+        <!-- 閱讀更多按鈕 -->
+        <div class="tr">
+          <a href="{{ .RelPermalink }}" class="link f6" style="background: #d61821; color: #fff; padding: 5px 10px; display: inline-block;">
+            Take Your Heart &rarr;
+          </a>
+        </div>
+      </div>
+    {{ end }}
+  </section>
 
-{{ partial "short-text" .Params.blurb}}
-
-{{ partial "2-up" .Params }}
-
-{{ partial "text-and-image" (dict "heading" .Params.values.heading "text" .Params.values.text "buttonText" "Read more" "buttonLink" "/values") }}
-
-{{ partial "blog" . }}
-
+</main>
 {{ end }}
