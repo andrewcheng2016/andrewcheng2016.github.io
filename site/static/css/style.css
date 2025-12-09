@@ -1,221 +1,101 @@
-/* P5 Style - Phantom Thief Awakening Edition */
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap'); /* 備用粗體 */
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* =========================================
-   1. 核心動畫定義 (Keyframes)
-   ========================================= */
-
-/* 標題故障效果 */
-@keyframes glitch-skew {
-  0% { transform: skew(0deg); }
-  10% { transform: skew(-20deg); }
-  20% { transform: skew(0deg); }
-  90% { transform: skew(0deg); }
-  92% { transform: skew(10deg); }
-  94% { transform: skew(0deg); }
-  100% { transform: skew(0deg); }
-}
-
-/* 卡片進場：從下往上滑入 */
-@keyframes slide-up-fade {
-  from {
-    opacity: 0;
-    transform: translateY(50px) skew(-2deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) skew(-2deg);
-  }
-}
-
-/* 背景緩慢移動，增加動態感 */
-@keyframes bg-scroll {
-  0% { background-position: 0 0; }
-  100% { background-position: 50px 50px; }
-}
-
-/* =========================================
-   2. 全局設定
-   ========================================= */
 body {
-    /* P5 經典斜紋背景 */
-    background-color: #111 !important;
-    background-image: 
-        repeating-linear-gradient(
-            45deg,
-            #111 0,
-            #111 10px,
-            #181818 10px,
-            #181818 20px
-        ) !important;
-    background-size: 100% 100%;
-    /* 讓背景動起來 */
-    animation: bg-scroll 20s linear infinite; 
-    color: #eee !important;
-    font-family: 'Teko', sans-serif !important;
-    font-size: 1.3rem;
-    overflow-x: hidden; /* 防止動畫導致卷軸出現 */
+    background-color: #0a0a0a; /* 深黑背景 */
+    color: #ededed; /* 柔和白字 */
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
 }
 
-/* 隱藏不想看到的東西 */
-a.db.grow.no-underline, nav img, header img, .bg-white, .bg-off-white {
-    display: none !important;
-}
+a { text-decoration: none; color: inherit; transition: 0.2s; }
 
-/* =========================================
-   3. 標題與字體 (P5 風格化)
-   ========================================= */
-h1, h2, h3, a.link.dim.f2 {
-    font-family: 'Oswald', sans-serif !important; /* 更粗獷的字體 */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-style: italic; /* 斜體更有速度感 */
-}
-
-/* 針對網站大標題的 Glitch 特效 */
-nav a.link.dim.f2 {
-    position: relative;
-    display: inline-block;
-    color: #fff !important;
-    background: #000;
-    padding: 5px 20px;
-    border-left: 8px solid #d61821;
-    transform: skew(-10deg);
-    /* 套用故障動畫 */
-    animation: glitch-skew 3s infinite linear alternate-reverse;
-}
-
-/* 標題裝飾：紅底白字 */
-h1.f2 {
-    background: #000;
-    color: #d61821 !important;
-    padding: 10px 40px !important;
-    transform: skew(-15deg) rotate(-1deg);
-    border: 2px solid #fff;
-    box-shadow: 5px 5px 0 #d61821;
-    display: inline-block;
-    margin-bottom: 30px;
-}
-
-/* =========================================
-   4. 文章卡片 (互動核心)
-   ========================================= */
-/* 卡片容器 */
-.w-100.w-45-ns {
-    background-color: #222 !important;
-    border: 2px solid #444 !important;
-    margin: 15px !important;
-    padding: 25px !important;
-    transform: skew(-2deg); /* 靜止時微歪 */
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 彈跳效果 */
-    position: relative;
-    overflow: hidden;
-    
-    /* 進場動畫設定 */
-    opacity: 0; /* 預設透明 */
-    animation: slide-up-fade 0.6s ease-out forwards;
-}
-
-/* 讓卡片依序進場 (延遲效果) */
-.w-100.w-45-ns:nth-child(1) { animation-delay: 0.1s; }
-.w-100.w-45-ns:nth-child(2) { animation-delay: 0.2s; }
-.w-100.w-45-ns:nth-child(3) { animation-delay: 0.3s; }
-.w-100.w-45-ns:nth-child(4) { animation-delay: 0.4s; }
-.w-100.w-45-ns:nth-child(5) { animation-delay: 0.5s; }
-
-/* 卡片懸停 (Hover) 特效 - 重點！ */
-.w-100.w-45-ns:hover {
-    background-color: #000 !important;
-    border-color: #d61821 !important;
-    transform: skew(-2deg) scale(1.05) translate(-5px, -5px);
-    box-shadow: 10px 10px 0px #d61821; /* 實心紅影 */
-    z-index: 10;
-}
-
-/* 裝飾卡片角落的三角形 (偽元素) */
-.w-100.w-45-ns::after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 40px;
-    height: 40px;
-    background: #d61821;
-    transform: rotate(45deg);
-    transition: top 0.2s, right 0.2s;
-}
-.w-100.w-45-ns:hover::after {
-    top: -10px;
-    right: -10px;
-}
-
-/* 文章標題 */
-.w-100.w-45-ns h2 a {
-    color: #fff !important;
-    font-size: 1.8rem;
-    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #d61821 50%);
-    background-size: 220%;
-    transition: all 0.4s;
-}
-.w-100.w-45-ns:hover h2 a {
-    background-position: 100%; /* 標題滑過紅色背景 */
-}
-
-/* =========================================
-   5. 導航與按鈕
-   ========================================= */
-nav {
-    background: rgba(0,0,0,0.95) !important;
-    border-bottom: 4px solid #d61821;
-    padding: 1.5rem 1rem;
+/* Navbar */
+.navbar {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px); /* 毛玻璃特效 */
+    border-bottom: 1px solid #333;
+    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
 }
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.brand { font-weight: 700; font-size: 1.5rem; letter-spacing: -0.5px; }
+.nav-links a { margin-left: 2rem; color: #888; font-size: 0.9rem; }
+.nav-links a:hover { color: #fff; }
 
-/* 選單連結 */
-nav a.link.dim.f6 {
-    color: #aaa !important;
-    font-size: 1.4rem;
-    margin: 0 15px;
-    padding: 2px 5px;
-    transition: color 0.2s, text-shadow 0.2s;
-    position: relative;
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+.hero h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #fff, #666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* 漸層文字 */
 }
 
-/* 選單 Hover - 文字發光 */
-nav a.link.dim.f6:hover {
-    color: #d61821 !important;
-    text-shadow: 0 0 8px #d61821;
-    opacity: 1 !important;
+/* Layout */
+.dual-column-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 左右兩欄 */
+    gap: 40px;
+    padding: 0 20px 60px;
 }
 
-/* "Take Your Heart" 按鈕 */
-.tr a.link.f6 {
-    background: #d61821 !important;
-    color: #fff !important;
-    border: none;
-    font-size: 1.2rem;
-    padding: 5px 20px !important;
-    display: inline-block;
-    transform: skew(-10deg);
-    transition: transform 0.1s, background 0.1s;
-    position: relative;
-    overflow: hidden;
+/* 如果手機版，變單欄 */
+@media (max-width: 768px) {
+    .dual-column-layout { grid-template-columns: 1fr; }
 }
 
-.tr a.link.f6:hover {
-    background: #fff !important;
-    color: #d61821 !important;
-    transform: skew(-10deg) scale(1.1);
-    font-weight: bold;
-    box-shadow: 0 0 10px #d61821;
+/* Section */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+.section-header h2 { font-size: 1.5rem; }
+.view-more { font-size: 0.8rem; color: #0070f3; } /* 科技藍 */
+
+/* Cards */
+.card-grid { display: flex; flex-direction: column; gap: 15px; }
+
+.post-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.2s, border-color 0.2s;
 }
 
-/* 修正摘要文字顏色 */
-p {
-    color: #bbb !important;
-    font-family: 'Roboto', sans-serif; /* 內文稍微好讀一點 */
-    font-weight: 400;
+.post-card:hover {
+    transform: translateY(-2px);
+    border-color: #666; /* Hover 變亮 */
+}
+
+.post-content h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.post-meta { font-size: 0.8rem; color: #555; margin-bottom: 10px; }
+.post-content p { font-size: 0.9rem; color: #888; }
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid #333;
+    color: #444;
+    font-size: 0.8rem;
 }

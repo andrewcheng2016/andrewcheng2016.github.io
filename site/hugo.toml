@@ -1,22 +1,16 @@
 baseURL = "/"
-languageCode = "zh-tw"
-title = "Andrew's Collection" # 網站標題會顯示在正中間
+title = "Andrew's Space" # 你的網站名稱
 
 [params]
+  description = "Exploring Toys & Academic Papers"
   custom_css = ["css/style.css"]
 
-# 你的選單設定
 [[menu.main]]
-  name = "玩具格納庫"
+  name = "🧸 Toys"
   url = "/toys"
   weight = 1
 
 [[menu.main]]
-  name = "論文研讀"
+  name = "📄 Papers"
   url = "/papers"
   weight = 2
-
-[[menu.main]]
-  name = "關於我"
-  url = "/about"
-  weight = 3

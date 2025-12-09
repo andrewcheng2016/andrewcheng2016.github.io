@@ -1,17 +1,37 @@
-<!doctype html>
-<html lang="{{ $.Site.Language.Lang }}">
-  {{ partial "head" . }}
-  <body class="sans-serif">
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <!-- 引入你的 CSS -->
+    <link rel="stylesheet" href="/css/style.css?v=final">
+    <!-- 引入 Google Fonts (現代無襯線體) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-    {{ block "header" . }}{{ partial "nav" . }}{{end}}
+    <!-- 1. 導航列 (Navbar) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">{{ .Site.Title }}</a>
+            <div class="nav-links">
+                {{ range .Site.Menus.main }}
+                <a href="{{ .URL }}">{{ .Name }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </nav>
 
-    {{ block "main" . }}{{ end }}
+    <!-- 2. 主要內容區 (Main Content) -->
+    <main class="main-content">
+        {{ block "main" . }}{{ end }}
+    </main>
 
-    {{ block "footer" . }}{{ partial "footer" . }}{{end}}
+    <!-- 3. 頁腳 (Footer) -->
+    <footer class="footer">
+        <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+    </footer>
 
-    {{ $script := .Site.Data.webpack.main }}
-    {{ with $script.js }}
-      <script src="{{ relURL . }}"></script>
-    {{ end }}
-  </body>
+</body>
 </html>
