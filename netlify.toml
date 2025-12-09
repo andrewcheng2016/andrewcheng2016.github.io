@@ -1,20 +1,8 @@
-[build.environment]
-  NETLIFY_USE_YARN = "true"
-  YARN_VERSION = "1.22.17"
-
 [build]
-  command = "yarn build"
-  publish = "dist"
+  base = "site"
+  publish = "public"
+  command = "hugo --gc --minify"
 
-[context.deploy-preview]
-  command = "yarn build:preview"
-
-[dev]
-  framework = "hugo"
-  targetPort = 3000
-
-[[plugins]]
-  package = "netlify-plugin-cypress"
-
-  [plugins.inputs]
-    record = true
+[context.production.environment]
+  HUGO_VERSION = "0.119.0"
+  HUGO_ENABLEGITINFO = "true"
