@@ -1,16 +1,41 @@
+# hugo.toml
+
 baseURL = "/"
-title = "Andrew's Space" # 你的網站名稱
+title = "Andrew's Space"
+defaultContentLanguage = "en" # 預設顯示英文
 
-[params]
-  description = "Exploring Toys & Academic Papers"
-  custom_css = ["css/style.css"]
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    # 英文 Menu
+    [[languages.en.menu.main]]
+      name = "Profile"
+      url = "/"
+      weight = 1
+    [[languages.en.menu.main]]
+      name = "Toys"
+      url = "/toys"
+      weight = 2
+    [[languages.en.menu.main]]
+      name = "Papers"
+      url = "/papers"
+      weight = 3
 
-[[menu.main]]
-  name = "🧸 Toys"
-  url = "/toys"
-  weight = 1
-
-[[menu.main]]
-  name = "📄 Papers"
-  url = "/papers"
-  weight = 2
+  [languages.zh-tw]
+    languageName = "繁體中文"
+    weight = 2
+    title = "Andrew 的空間" # 中文版網站標題
+    # 中文 Menu
+    [[languages.zh-tw.menu.main]]
+      name = "個人簡介"
+      url = "/zh-tw/"
+      weight = 1
+    [[languages.zh-tw.menu.main]]
+      name = "玩具收藏"
+      url = "/zh-tw/toys"
+      weight = 2
+    [[languages.zh-tw.menu.main]]
+      name = "論文筆記"
+      url = "/zh-tw/papers"
+      weight = 3

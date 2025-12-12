@@ -1,47 +1,44 @@
-backend:
-  name: git-gateway
-  branch: main # 確保這裡是 main 分支
-
-# 圖片上傳設定
-media_folder: "site/static/images/uploads" # 圖片存放在這裡
-public_folder: "/images/uploads"           # 文章中讀取圖片的路徑
-
-# 這是最重要的部分：定義你的分類
 collections:
-  # 1. 玩具格納庫 (Toys)
-  - name: "toys" # 對應 content/toys 資料夾
-    label: "🧸 玩具格納庫"
-    folder: "site/content/toys" # 告訴 CMS 檔案存在哪
-    create: true # 允許建立新文章
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 檔名格式
-    fields: # 編輯文章時的欄位
-      - {label: "標題", name: "title", widget: "string"}
-      - {label: "發布日期", name: "date", widget: "datetime"}
-      - {label: "封面圖片", name: "image", widget: "image", required: false}
-      - {label: "簡短摘要", name: "summary", widget: "text", required: false} 
-      - {label: "內容", name: "body", widget: "markdown"}
+  # ... (保留 toys 和 papers 的設定) ...
 
-  # 2. 論文研讀 (Papers)
-  - name: "papers" # 對應 content/papers 資料夾
-    label: "📄 論文研讀"
-    folder: "site/content/papers"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "論文標題", name: "title", widget: "string"}
-      - {label: "研讀日期", name: "date", widget: "datetime"}
-      - {label: "相關圖片", name: "image", widget: "image", required: false}
-      - {label: "關鍵字/摘要", name: "summary", widget: "text", required: false}
-      - {label: "筆記內容", name: "body", widget: "markdown"}
-
-  # 3. 如果你想保留「關於我」的編輯功能，可以留著這個單頁設定
-  # 如果不需要，這整段 files 可以刪除
-  # - name: "pages"
-  #   label: "其他頁面"
-  #   files:
-  #     - file: "site/content/about/_index.md"
-  #       label: "關於我"
-  #       name: "about"
-  #       fields:
-  #         - {label: "標題", name: "title", widget: "string"}
-  #         - {label: "內容", name: "body", widget: "markdown"}
+  # 3. 頁面設定 (修改這部分)
+  - name: "pages"
+    label: "📄 網站頁面"
+    files:
+      # 英文版首頁
+      - file: "site/content/_index.md"
+        label: "首頁 (英文/預設)"
+        name: "home_en"
+        fields:
+          - {label: "名字/標題", name: "title", widget: "string"}
+          - {label: "職稱", name: "role", widget: "string"}
+          - {label: "頭像", name: "avatar", widget: "image"}
+          - {label: "技能列表", name: "skills", widget: "list"}
+          - label: "工作經歷"
+            name: "experiences"
+            widget: "list"
+            fields:
+              - {label: "公司", name: "company", widget: "string"}
+              - {label: "職位", name: "role", widget: "string"}
+              - {label: "時間", name: "period", widget: "string"}
+              - {label: "描述", name: "description", widget: "text"}
+          - {label: "詳細內文 (Markdown)", name: "body", widget: "markdown"}
+      
+      # 中文版首頁 (為多語言做準備)
+      - file: "site/content/_index.zh-tw.md"
+        label: "首頁 (中文)"
+        name: "home_zh"
+        fields:
+          - {label: "名字/標題", name: "title", widget: "string"}
+          - {label: "職稱", name: "role", widget: "string"}
+          - {label: "頭像", name: "avatar", widget: "image"}
+          - {label: "技能列表", name: "skills", widget: "list"}
+          - label: "工作經歷"
+            name: "experiences"
+            widget: "list"
+            fields:
+              - {label: "公司", name: "company", widget: "string"}
+              - {label: "職位", name: "role", widget: "string"}
+              - {label: "時間", name: "period", widget: "string"}
+              - {label: "描述", name: "description", widget: "text"}
+          - {label: "詳細內文 (Markdown)", name: "body", widget: "markdown"}

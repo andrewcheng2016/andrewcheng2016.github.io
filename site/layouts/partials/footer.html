@@ -1,50 +1,45 @@
-<footer class="bg-black ph3 pv4 white">
+<footer class="site-footer">
+    <div class="container">
+        
+        <div class="footer-content">
+            
+            <!-- 左側：網站名稱與簡介 -->
+            <div class="footer-column">
+                <div class="brand" style="font-size: 1.5rem; margin-bottom: 10px;">
+                    {{ .Site.Title }}
+                </div>
+                <p style="color: #888; font-size: 0.9rem; max-width: 300px;">
+                    Built with Hugo & Decap CMS. <br>
+                    Focusing on AI, Web Dev, and Toys.
+                </p>
+            </div>
 
-	<div class="mw7 center pt3">
+            <!-- 中間：導覽連結 (跟隨上方 Menu) -->
+            <div class="footer-column">
+                <h4 class="footer-heading">NAVIGATION</h4>
+                <ul class="footer-links">
+                    {{ range .Site.Menus.main }}
+                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
 
-		<div class="measure-narrow center mb4">
+            <!-- 右側：聯絡方式 (手動設定) -->
+            <div class="footer-column">
+                <h4 class="footer-heading">CONTACT</h4>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/andrewcheng2016" target="_blank">GITHUB //</a></li>
+                    <li><a href="mailto:andrewcheng2016@gmail.com">EMAIL //</a></li>
+                    <!-- 如果有 LinkedIn 也可以加在這裡 -->
+                </ul>
+            </div>
 
-			<img src="/img/logo.svg" alt="Kaldi logo" class="db w4 center mb4 br0">
-			<p class="f3 lh-title light-gray b tc mb2">{{ .Site.Data.footer.title }}</p>
-			<p>{{ .Site.Data.footer.blurb }}</p>
+        </div>
 
-			{{ partial "newsletter-form" . }}
+        <!-- 底部版權宣告 -->
+        <div class="footer-copyright">
+            &copy; {{ now.Format "2006" }} Andrew Cheng. All rights reserved.
+        </div>
 
-		</div>
-
-		<div class="flex-ns justify-between">
-
-			<div>
-				<h3 class="f4 b lh-title mb1 primary">Kaldi</h3>
-				<ul class="mb3">
-					<li><a href="/" class="link">Home</a></li>
-					<li><a href="/products" class="link">Our products</a></li>
-					<li><a href="/values" class="link">About</a></li>
-					<li><a href="/post" class="link">Blog</a></li>
-					<li><a href="/contact" class="link">Contact</a></li>
-				</ul>
-			</div>
-
-			<div>
-				<h3 class="f4 b lh-title mb1 primary">Find out more</h3>
-				<ul class="mb3">
-					<li><a href="/post/jamaica-blue/" class="link">Latest offers</a></li>
-					<li><a href="/contact" class="link">Schedule an appointment</a></li>
-				</ul>
-			</div>
-
-			<div>
-				<h3 class="f4 b lh-title mb2 primary">Social media</h3>
-				<ul class="mhn2">
-					{{ partial "social-icon" (dict "link" "#" "svg" "icons-facebook" "alt" "Kaldi on Facebook") }}
-					{{ partial "social-icon" (dict "link" "#" "svg" "icons-twitter" "alt" "Kaldi on Twitter") }}
-					{{ partial "social-icon" (dict "link" "#" "svg" "icons-instagram" "alt" "Kaldi on Instagram") }}
-					{{ partial "social-icon" (dict "link" "#" "svg" "icons-vimeo" "alt" "Kaldi on Vimeo") }}
-				</ul>
-			</div>
-
-		</div>
-	</div>
-
+    </div>
 </footer>
-
