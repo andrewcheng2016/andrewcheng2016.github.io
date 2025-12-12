@@ -30,5 +30,39 @@
             {{ end }}
         </div>
 
+        <!-- P5 時鐘 -->
+        <div id="p5-clock" class="p5-clock-container">
+            <div class="p5-date">
+                <span id="p5-month">12</span>/<span id="p5-day">13</span>
+            </div>
+            <div class="p5-time">
+                <span id="p5-hours">AM</span> <span id="p5-minutes">00:00</span>
+            </div>
+        </div>
+
+        <!-- 啟動時鐘的 Script (直接寫在這裡最快) -->
+        <script>
+        function updateP5Clock() {
+            const now = new Date();
+            const months = String(now.getMonth() + 1); // 不補 0，像 P5 風格
+            const days = String(now.getDate());
+            
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            // 12小時制
+            hours = hours % 12;
+            hours = hours ? hours : 12; 
+
+            document.getElementById('p5-month').textContent = months;
+            document.getElementById('p5-day').textContent = days;
+            document.getElementById('p5-hours').textContent = ampm;
+            document.getElementById('p5-minutes').textContent = hours + ":" + minutes;
+        }
+        setInterval(updateP5Clock, 1000); // 每秒更新
+        updateP5Clock(); // 初始化
+        </script>
+
     </div>
 </nav>

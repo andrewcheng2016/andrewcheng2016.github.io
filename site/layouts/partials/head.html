@@ -1,33 +1,37 @@
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
+  <!-- 1. 網站標題 -->
   <title>{{ .Title }} | {{ $.Site.Title }}</title>
 
+  <!-- 2. Google Fonts (更新為配合 style.css 的字體) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- 3. Favicons (Tab 上的小圖案) -->
+  <!-- 請將你的 Logo 或頭像圖片命名為 favicon.png，並放入 static/img/ 資料夾 -->
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" href="/img/favicon.png">
+
+  <!-- 4. CSS 樣式表 -->
+  <!-- 保留舊的 Webpack 設定 (以防萬一) -->
   {{ $stylesheet := .Site.Data.webpack.main }}
   {{ with $stylesheet.css }}
     <link href="{{ relURL . }}" rel="stylesheet">
   {{ end }}
 
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <!-- <base href="{{ $.Site.BaseURL }}"> -->
+  <!-- 你的主要樣式 (加了 ?v=3 強制瀏覽器重新讀取最新版) -->
+  <link rel="stylesheet" href="/css/style.css?v=3">
 
-	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700" rel="stylesheet">
-
-	<!-- Favicons -->
-	<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-	<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="/manifest.json">
-	<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#ff4400">
-	<meta name="theme-color" content="#fff">
-
-  <!-- Open Graph Hugo https://gohugo.io/templates/internal/#open-graph -->
-  {{ template "_internal/opengraph.html" . }}
-
+  <!-- 5. Netlify Identity (CMS 登入用) -->
   {{ if .IsHome }}
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   {{ end }}
 
-  <link rel="stylesheet" href="/css/style.css?v=2">
+  <!-- 6. Open Graph (分享到社群媒體時的預覽設定) -->
+  {{ template "_internal/opengraph.html" . }}
+  <meta name="theme-color" content="#d31919">
 </head>
