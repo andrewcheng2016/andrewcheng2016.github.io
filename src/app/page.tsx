@@ -234,22 +234,24 @@ export default function Home() {
            <div className="absolute top-20 -left-40 w-[150%] h-[100%] bg-p5-red opacity-80 -skew-x-12 -z-10" 
                 style={{ clipPath: "polygon(0 0, 100% 10%, 90% 100%, 0% 90%)" }}/>
 
-<div className="mb-12 relative text-center lg:text-left z-20 pointer-events-none select-none">
-              {/* 
-                  修復重點：
-                  1. 上排名字 z-index 改為 z-20 (最上層)。
-                  2. 下排名字 z-index 改為 z-10 (下層)，這樣就算重疊也是墊在下面，不會擋字。
-                  3. 增加 lg:ml-10 (左邊距)，讓下排文字往右推一點，形成階梯感。
-              */}
-            
-              <div className="relative z-20 inline-block bg-white text-black border-2 border-black px-5 py-2 shadow-[8px_8px_0_#d31919] -rotate-2">
-                <span className="font-anton font-black text-6xl tracking-widest leading-none block">
+           {/* 名字區塊 */}
+           <div className="mb-12 relative z-20 pointer-events-none select-none flex flex-col items-center lg:items-start">
+           
+              <div className="relative z-10 bg-white text-black border-2 border-black px-4 py-1 lg:px-5 lg:py-2 shadow-[4px_4px_0_#d31919] lg:shadow-[8px_8px_0_#d31919] -rotate-2">
+                <span className="font-anton font-black text-4xl lg:text-6xl tracking-widest leading-none block">
                   {t.nameTop}
                 </span>
-              </div>              
-              <br className="lg:hidden" />              
-              <div className="relative z-10 inline-block bg-black text-white border-2 border-white px-6 py-2 -mt-6 rotate-1 shadow-[8px_8px_0_#333]">
-                 <span className="font-anton font-bold text-4xl tracking-[0.2em] leading-none block">
+              </div>
+      
+              <div className="relative z-20 bg-black text-white border-2 border-white px-5 py-1 lg:px-6 lg:py-2 shadow-[4px_4px_0_#333] lg:shadow-[8px_8px_0_#333] rotate-1 
+                              -mt-1 ml-8 -lg:mt-3 lg:ml-16">
+                 {/* 
+                    修改說明：
+                    1. lg:-mt-2 (電腦版)：只讓邊框稍微碰到一點點，絕不蓋住字。
+                    2. lg:ml-16 (電腦版)：往右推更遠，形成明顯的階梯，避開上排文字。
+                    3. -mt-1 ml-8 (手機版)：手機上也保持類似的階梯邏輯，確保不擋字。
+                 */}
+                 <span className="font-anton font-bold text-2xl lg:text-4xl tracking-[0.2em] leading-none block">
                    {t.nameBottom}
                  </span>
               </div>
