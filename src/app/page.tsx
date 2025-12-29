@@ -103,7 +103,7 @@ const publications = [
     title: "External validation of an AI mHealth tool for gingivitis detection among older adults at daycare centers: a pilot study",
     venue: "International Dental Journal, 2025",
     authors: "Reinhard Chun Wang Chau, Andrew Chi Chung Cheng, et al.",
-    link: null
+    link: "https://pubmed.ncbi.nlm.nih.gov/39864975/"
   },
   {
     type: "Conference",
