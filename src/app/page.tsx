@@ -8,6 +8,8 @@ import { Github, FileDown, ExternalLink, Globe, BookOpen } from "lucide-react";
 // --- 翻譯字典 ---
 const translations = {
   en: {
+    nameTop: "CHENG",
+    nameBottom: "Chi Chung",
     role: "Research Assistant",
     loc: "HONG KONG",
     focus: "AI & WEB SYSTEM",
@@ -30,6 +32,8 @@ const translations = {
     download: "DOWNLOAD CV"
   },
   zh: {
+    nameTop: "鄭",
+    nameBottom: "智聰",
     role: "研究助理",
     loc: "香港",
     focus: "AI 與 網站開發",
@@ -41,7 +45,7 @@ const translations = {
         擁有使用 Django, React.js, 和Next.js等 建構可擴展系統的豐富經驗。
       </>
     ),
-    expTitle: "// 工作經歷",
+    expTitle: "工作經歷",
     // 表格標題
     tblYear: "年份",
     tblRole: "角色",
@@ -204,7 +208,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
           <div className="flex items-baseline gap-2">
              <span className="font-anton text-2xl text-p5-red drop-shadow-[2px_2px_0_#fff]">ANDREW</span>
-             <span className="font-anton text-2xl text-white">CHENG</span>
+             <span className="font-anton text-2xl text-white">Cheng</span>
           </div>
           
           <div className="flex items-center gap-6">
@@ -235,13 +239,13 @@ export default function Home() {
                 style={{ clipPath: "polygon(0 0, 100% 10%, 90% 100%, 0% 90%)" }}/>
 
            <div className="mb-8 relative text-center lg:text-left">
-              <div className="bg-white text-black font-anton text-6xl inline-block px-4 py-2 -skew-x-6 shadow-[8px_8px_0_#000]">
-                ANDREW
-              </div>
-              <br className="lg:hidden" />
-              <div className="bg-black text-white font-anton text-4xl inline-block px-4 py-1 skew-x-12 -mt-4 lg:ml-8 ml-0 border-2 border-white z-10 relative">
-                 CHENG
-              </div>
+            <div className="bg-white text-black font-bold not-italic text-6xl inline-block px-4 py-2 shadow-[8px_8px_0_#000]">
+               {t.nameTop}
+            </div>
+            <br className="lg:hidden" />
+            <div className="bg-black text-white not-italic text-4xl inline-block px-4 py-1 -mt-4 lg:ml-8 ml-0 border-2 border-white z-10 relative">
+               {t.nameBottom}
+            </div>
            </div>
 
            {/* 頭像區 */}
@@ -255,7 +259,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-p5-red mix-blend-color-burn opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
               </div>
               <div className="absolute -bottom-4 -right-8 bg-black text-white font-anton px-4 py-1 text-lg -rotate-3 border-2 border-white z-20 shadow-[4px_4px_0_#d31919]">
-                 CODENAME: DEV
+                 Andrew
               </div>
            </div>
 

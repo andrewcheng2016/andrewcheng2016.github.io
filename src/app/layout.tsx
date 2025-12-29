@@ -16,8 +16,12 @@ const notoSans = Noto_Sans_TC({
 });
 
 export const metadata: Metadata = {
-  title: "Andrew's Space | Persona 5 Style CV",
+  title: "Andrew's Space",
   description: "Developer & Researcher Portfolio",
+
+  icons:{
+    icon: '/images/favicon.png'
+  }
 };
 
 export default function RootLayout({

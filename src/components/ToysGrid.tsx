@@ -6,7 +6,7 @@ export default function ToysGrid({ toys }: { toys: any[] }) {
   return (
     <div className="min-h-screen bg-p5-black text-p5-white p-8 font-sans selection:bg-p5-red selection:text-white">
       {/* 導航 */}
-      <Link href="/" className="font-anton text-xl text-p5-red hover:underline mb-8 block hover:translate-x-2 transition-transform">&larr; BACK TO HIDEOUT</Link>
+      <Link href="/" className="font-anton text-xl text-p5-red hover:underline mb-8 block hover:translate-x-2 transition-transform">&larr; BACK TO HOME PAGE</Link>
       
       {/* 標題 */}
       <h1 className="font-anton text-5xl bg-p5-red text-white inline-block px-6 py-2 -skew-x-12 mb-12 shadow-[5px_5px_0_#fff]">
