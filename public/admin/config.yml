@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main # 你的 GitHub 分支名稱
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  # 1. Toys Collection
+  - name: "toys"
+    label: "🧸 Toys"
+    folder: "src/content/toys" # 資料存這裡
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+       - {label: "Last Updated", name: "lastmod", widget: "datetime", default: "", required: false} 
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Description", name: "body", widget: "markdown"}
+
+  # 2. Papers Collection
+  - name: "papers"
+    label: "📄 Papers"
+    folder: "src/content/papers"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Venue/Conference", name: "venue", widget: "string"}
+      - {label: "Authors", name: "authors", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+       - {label: "Last Updated", name: "lastmod", widget: "datetime", default: "", required: false} 
+      - {label: "Link (DOI/PDF)", name: "link", widget: "string", required: false}
+      - {label: "Type", name: "type", widget: "select", options: ["Conference", "Journal", "Patent"]}
+      - {label: "Abstract", name: "body", widget: "markdown"}

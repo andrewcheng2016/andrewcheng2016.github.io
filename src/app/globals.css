@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 這裡可以之後加一些自定義的 CSS，目前先留空 */
