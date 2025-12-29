@@ -34,7 +34,7 @@ const translations = {
     nameBottom: "智聰",
     role: "研究助理",
     loc: "香港",
-    focus: "人工智能 與 網站開發",
+    focus: "人工智能與網站開發",
     summaryTitle: "個人簡介",
     summary: (
       <>
