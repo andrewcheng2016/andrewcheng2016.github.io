@@ -12,7 +12,7 @@ const translations = {
     nameBottom: "Chi Chung",
     role: "Research Assistant",
     loc: "HONG KONG",
-    focus: "AI & WEB SYSTEM",
+    focus: "AI & WEB Development",
     summaryTitle: "PROFILE SUMMARY",
     summary: (
       <>
@@ -21,12 +21,10 @@ const translations = {
         Experienced in building scalable systems using Django, React.js, Next.js, and other modern web technologies.
       </>
     ),
-    expTitle: "PROJECT EXPERIENCE",
-    // 表格標題
+    expTitle: "WORK EXPERIENCE",
     tblYear: "YEAR",
     tblRole: "ROLE",
     tblOrg: "ORGANIZATION / DETAILS",
-    
     techTitle: "TECH STACK",
     pubTitle: "PUBLICATIONS & PATENTS",
     download: "DOWNLOAD CV"
@@ -42,22 +40,20 @@ const translations = {
       <>
         熱衷於將學術研究轉化為實際應用。
         專精於 <strong className="text-white">電腦視覺 (CV)</strong> 與 <strong className="text-white">網站開發</strong>。
-        擁有使用 Django, React.js, 和Next.js等 建構可擴展系統的豐富經驗。
+        擁有使用 Django, React.js 與 Next.js 等等建構可擴展系統的豐富經驗。
       </>
     ),
-    expTitle: "工作經歷",
-    // 表格標題
+    expTitle: "工作經驗",
     tblYear: "年份",
     tblRole: "角色",
-    tblOrg: "機構 / 工作內容",
-
-    techTitle: "技術",
+    tblOrg: "機構 / 內容",
+    techTitle: "技能",
     pubTitle: "論文與專利",
     download: "下載履歷 PDF"
   }
 };
 
-// --- 工作經歷資料 (包含你提供的新內容) ---
+// --- 工作經歷資料 ---
 const getExperiences = (lang: 'en' | 'zh') => [
   {
     year: "2023 - 2025",
@@ -107,7 +103,7 @@ const publications = [
     title: "External validation of an AI mHealth tool for gingivitis detection among older adults at daycare centers: a pilot study",
     venue: "International Dental Journal, 2025",
     authors: "Reinhard Chun Wang Chau, Andrew Chi Chung Cheng, et al.",
-    link: "https://pubmed.ncbi.nlm.nih.gov/39864975/"
+    link: null
   },
   {
     type: "Conference",
@@ -207,7 +203,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-p5-black/90 border-b-4 border-p5-red backdrop-blur-sm shadow-[0_4px_20px_rgba(211,25,25,0.4)]">
         <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
           <div className="flex items-baseline gap-2">
-             <span className="font-anton text-2xl text-p5-red drop-shadow-[2px_2px_0_#fff]">ANDREW</span>
+             <span className="font-anton text-2xl text-p5-red drop-shadow-[2px_2px_0_#fff]">Andrew</span>
              <span className="font-anton text-2xl text-white">Cheng</span>
           </div>
           
@@ -238,14 +234,25 @@ export default function Home() {
            <div className="absolute top-20 -left-40 w-[150%] h-[100%] bg-p5-red opacity-80 -skew-x-12 -z-10" 
                 style={{ clipPath: "polygon(0 0, 100% 10%, 90% 100%, 0% 90%)" }}/>
 
-           <div className="mb-8 relative text-center lg:text-left">
-            <div className="bg-white text-black font-bold not-italic text-6xl inline-block px-4 py-2 shadow-[8px_8px_0_#000]">
-               {t.nameTop}
-            </div>
-            <br className="lg:hidden" />
-            <div className="bg-black text-white not-italic text-4xl inline-block px-4 py-1 -mt-4 lg:ml-8 ml-0 border-2 border-white z-10 relative">
-               {t.nameBottom}
-            </div>
+<div className="mb-12 relative text-center lg:text-left z-20 pointer-events-none select-none">
+              {/* 
+                  修復重點：
+                  1. 上排名字 z-index 改為 z-20 (最上層)。
+                  2. 下排名字 z-index 改為 z-10 (下層)，這樣就算重疊也是墊在下面，不會擋字。
+                  3. 增加 lg:ml-10 (左邊距)，讓下排文字往右推一點，形成階梯感。
+              */}
+            
+              <div className="relative z-20 inline-block bg-white text-black border-2 border-black px-5 py-2 shadow-[8px_8px_0_#d31919] -rotate-2">
+                <span className="font-anton font-black text-6xl tracking-widest leading-none block">
+                  {t.nameTop}
+                </span>
+              </div>              
+              <br className="lg:hidden" />              
+              <div className="relative z-10 inline-block bg-black text-white border-2 border-white px-6 py-2 -mt-6 rotate-1 shadow-[8px_8px_0_#333]">
+                 <span className="font-anton font-bold text-4xl tracking-[0.2em] leading-none block">
+                   {t.nameBottom}
+                 </span>
+              </div>
            </div>
 
            {/* 頭像區 */}
@@ -259,20 +266,39 @@ export default function Home() {
                   <div className="absolute inset-0 bg-p5-red mix-blend-color-burn opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
               </div>
               <div className="absolute -bottom-4 -right-8 bg-black text-white font-anton px-4 py-1 text-lg -rotate-3 border-2 border-white z-20 shadow-[4px_4px_0_#d31919]">
-                 Andrew
+                 ANDREW
               </div>
            </div>
 
            <div className="flex flex-col gap-3 mt-10 w-64">
-              <a href="https://github.com/andrewcheng2016" target="_blank" className="group flex items-center justify-between bg-black text-white border-2 border-white p-2 hover:bg-white hover:text-black transition-all relative overflow-hidden">
-                 <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 mix-blend-difference"/>
-                 <span className="font-anton text-lg flex items-center gap-2 relative z-10"><Github size={18}/> GITHUB</span>
-                 <ExternalLink size={16} className="relative z-10"/>
+ <a 
+                href="https://github.com/andrewcheng2016" 
+                target="_blank" 
+                className="group flex items-center justify-between bg-black text-white border-2 border-white p-2 relative overflow-hidden transition-colors duration-300"
+              >
+                 {/* 1. 滑動背景 (z-0) */}
+                 <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"/>
+                 
+                 {/* 2. 文字內容 (z-10, 確保在背景之上) */}
+                 {/* 加入 group-hover:text-black 確保背景變白時，字變黑 */}
+                 <span className="font-anton text-lg flex items-center gap-2 relative z-10 group-hover:text-black transition-colors duration-300">
+                    <Github size={18}/> GITHUB
+                 </span>
+                 
+                 {/* 箭頭圖示 (同上) */}
+                 <ExternalLink size={16} className="relative z-10 group-hover:text-black transition-colors duration-300"/>
               </a>
               
-              <a href="/cv.pdf" download className="group flex items-center justify-between bg-p5-red text-white border-2 border-p5-red p-2 hover:bg-white hover:text-p5-red hover:border-white transition-all shadow-[4px_4px_0_#fff]">
-                 <span className="font-anton text-lg flex items-center gap-2"><FileDown size={18}/> {t.download}</span>
-                 <span className="font-anton text-xs">PDF</span>
+              {/* PDF 下載按鈕 - 維持原樣，但也加強文字變色邏輯以防萬一 */}
+              <a 
+                href="/cv.pdf" 
+                download 
+                className="group flex items-center justify-between bg-p5-red text-white border-2 border-p5-red p-2 hover:bg-white hover:text-p5-red hover:border-white transition-all shadow-[4px_4px_0_#fff] relative overflow-hidden"
+              >
+                 <span className="font-anton text-lg flex items-center gap-2 relative z-10">
+                    <FileDown size={18}/> {t.download}
+                 </span>
+                 <span className="font-anton text-xs relative z-10">PDF</span>
               </a>
            </div>
         </motion.div>
@@ -301,9 +327,10 @@ export default function Home() {
               </div>
            </div>
 
+           {/* Profile Summary (Unified Style) */}
            <div className="mb-10 relative">
               <div className="absolute -left-8 -top-8 text-8xl font-anton text-p5-gray opacity-50 select-none">“</div>
-              <h3 className="font-anton text-3xl bg-white text-black inline-block px-2 mb-4 -skew-x-12 relative z-10">
+              <h3 className="font-anton text-3xl bg-white text-black inline-block px-2 mb-4 -skew-x-12 relative z-10 shadow-[4px_4px_0_#d31919]">
                  {t.summaryTitle}
               </h3>
               <p className="text-gray-300 text-lg leading-relaxed border-l-4 border-p5-red pl-4 bg-p5-black/50 p-4 backdrop-blur-sm">
@@ -311,15 +338,14 @@ export default function Home() {
               </p>
            </div>
 
-           {/* --- 升級版: P5 風格表格 (Experience Table) --- */}
+           {/* Experience (Unified Style) */}
            <div className="mb-10">
-              <h3 className="font-anton text-3xl bg-p5-red text-white inline-block px-2 mb-6 skew-x-12 shadow-[4px_4px_0_#fff]">
+              <h3 className="font-anton text-3xl bg-white text-black inline-block px-2 mb-6 -skew-x-12 shadow-[4px_4px_0_#d31919]">
                  {t.expTitle}
               </h3>
               
               <div className="w-full overflow-hidden border-2 border-gray-700 bg-p5-gray/50">
                  <table className="w-full text-left border-collapse">
-                    {/* 表頭 */}
                     <thead>
                       <tr className="bg-white text-black font-anton text-lg">
                         <th className="p-4 border-b-4 border-p5-red w-1/5">{t.tblYear}</th>
@@ -327,7 +353,6 @@ export default function Home() {
                         <th className="p-4 border-b-4 border-p5-red">{t.tblOrg}</th>
                       </tr>
                     </thead>
-                    {/* 表身 */}
                     <tbody className="font-sans text-sm md:text-base">
                       {experiences.map((exp, index) => (
                         <tr key={index} className="group border-b border-gray-700 hover:bg-p5-red hover:text-white transition-colors duration-200">
@@ -348,9 +373,9 @@ export default function Home() {
               </div>
            </div>
 
-           {/* Tech Stack */}
+           {/* Tech Stack (Unified Style) */}
            <div className="mb-12">
-              <h3 className="font-anton text-3xl bg-black border border-white text-white inline-block px-2 mb-4">
+              <h3 className="font-anton text-3xl bg-white text-black inline-block px-2 mb-4 -skew-x-12 shadow-[4px_4px_0_#d31919]">
                  {t.techTitle}
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -362,7 +387,7 @@ export default function Home() {
               </div>
            </div>
 
-           {/* Publications */}
+           {/* Publications (Unified Style) */}
            <div>
               <h3 className="font-anton text-3xl bg-white text-black inline-block px-2 mb-6 -skew-x-12 shadow-[4px_4px_0_#d31919]">
                  {t.pubTitle}
