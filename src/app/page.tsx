@@ -22,6 +22,9 @@ const translations = {
       </>
     ),
     expTitle: "WORK EXPERIENCE",
+    eduTitle: "EDUCATION", 
+    tblDegree: "DEGREE",
+    tblSchool: "SCHOOL",
     tblYear: "YEAR",
     tblRole: "ROLE",
     tblOrg: "ORGANIZATION / DETAILS",
@@ -44,6 +47,9 @@ const translations = {
       </>
     ),
     expTitle: "工作經驗",
+    eduTitle: "學歷背景",
+    tblDegree: "學位",
+    tblSchool: "學校",
     tblYear: "年份",
     tblRole: "角色",
     tblOrg: "機構 / 內容",
@@ -86,6 +92,16 @@ const getExperiences = (lang: 'en' | 'zh') => [
     desc: lang === 'en'
       ? "Developed IoT project using Arduino (ESP32) with mobile-controlled DHT11 sensors via Blynk cloud."
       : "開發 IoT 專案：使用 Arduino (ESP32) 與 Blynk 雲端控制 DHT11 傳感器。"
+  }
+];
+
+const getEducation = (lang: 'en' | 'zh') => [
+  {
+    year: "2021",
+    school: lang === 'en' ? "The Hong Kong Polytechnic University" : "香港理工大學",
+    degree: lang === 'en' 
+      ? "BEng (1st Hons) Electronic & Information Engineering" 
+      : "電子及資訊工程學工學士 (一級榮譽)"
   }
 ];
 
@@ -176,6 +192,7 @@ export default function Home() {
   const [lang, setLang] = useState<'en' | 'zh'>('en');
   const t = translations[lang];
   const experiences = getExperiences(lang);
+  const education = getEducation(lang);
 
   useEffect(() => {
     setMounted(true);
@@ -374,6 +391,40 @@ export default function Home() {
                  </table>
               </div>
            </div>
+            
+           {/* Education Section */}
+           <div className="mb-10">
+              <h3 className="font-anton text-3xl bg-white text-black inline-block px-2 mb-6 -skew-x-12 shadow-[4px_4px_0_#d31919]">
+                 {t.eduTitle}
+              </h3>
+              
+              <div className="w-full overflow-hidden border-2 border-gray-700 bg-p5-gray/50">
+                 <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-white text-black font-anton text-lg">
+                        <th className="p-4 border-b-4 border-p5-red w-1/5">{t.tblYear}</th>
+                        <th className="p-4 border-b-4 border-p5-red w-2/5">{t.tblDegree}</th>
+                        <th className="p-4 border-b-4 border-p5-red">{t.tblSchool}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="font-sans text-sm md:text-base">
+                      {education.map((edu, index) => (
+                        <tr key={index} className="group border-b border-gray-700 hover:bg-p5-red hover:text-white transition-colors duration-200">
+                           <td className="p-4 font-anton text-p5-red group-hover:text-white align-top border-r border-gray-700 group-hover:border-p5-red">
+                              {edu.year}
+                           </td>
+                           <td className="p-4 font-bold align-top border-r border-gray-700 group-hover:border-p5-red">
+                              {edu.degree}
+                           </td>
+                           <td className="p-4 align-top">
+                              <div className="font-bold text-lg">{edu.school}</div>
+                           </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                 </table>
+              </div>
+           </div>
 
            {/* Tech Stack (Unified Style) */}
            <div className="mb-12">
@@ -381,7 +432,7 @@ export default function Home() {
                  {t.techTitle}
               </h3>
               <div className="flex flex-wrap gap-3">
-                 {["Python", "Django", "FastAPI", "Next.js", "React", "PyTorch", "OpenCV", "Docker", "GCP"].map((skill) => (
+                 {["C++", "C#", "Java", "Python", "PyTorch", "TensorFlow", "Django", "FastAPI", "Next.js", "React", "Docker", "Google Cloud Platform"].map((skill) => (
                     <span key={skill} className="bg-p5-gray border border-gray-600 px-3 py-1 font-anton text-sm hover:bg-white hover:text-black hover:border-p5-red transition-all cursor-default skew-x-[-10deg]">
                        {skill}
                     </span>
