@@ -270,7 +270,7 @@ export default function Home() {
               
               {/* PDF 下載按鈕 - 維持原樣，但也加強文字變色邏輯以防萬一 */}
               <a 
-                href="/cv.pdf" 
+                href="/ChengChiChung_CV_20260413.pdf" 
                 download 
                 className="group flex items-center justify-between bg-p5-red text-white border-2 border-p5-red p-2 hover:bg-white hover:text-p5-red hover:border-white transition-all shadow-[4px_4px_0_#fff] relative overflow-hidden"
               >
