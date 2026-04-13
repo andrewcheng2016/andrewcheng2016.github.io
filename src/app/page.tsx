@@ -80,7 +80,7 @@ const publications = [
     title: "GumAgent: Towards an Accessible Gum Disease Detection Tool Leveraging Vision Language Model",
     venue: "ICICSP 2025",
     authors: "Chi-Chung Cheng, Harris Sik-Ho Tsang, Richard Tai-Chiu Hsung, Yui-Lam Chan, Wai-Lun Lo and Walter Lam",
-    link: null
+    link: "https://ieeexplore.ieee.org/abstract/document/11338496"
   },
   {
     type: "Journal",
@@ -100,6 +100,13 @@ const publications = [
     type: "Patent",
     title: "Machine Learning-Based Image Processor For Intraoral Images",
     venue: "US Patent App. 18/608,983 (Filed: 2024/03/19)",
+    authors: "Yu Hang LAM; Richard Tai Chiu HSUNG; Andrew Chi Chung CHENG; et al.",
+    link: null
+  },
+  {
+    type: "Patent",
+    title: "DTCWT based Shift-Equivariant pooling for medical image segmentation",
+    venue: "US Patent App. 63/957,242 (Filed: 2026/01/09)",
     authors: "Yu Hang LAM; Richard Tai Chiu HSUNG; Andrew Chi Chung CHENG; et al.",
     link: null
   }
