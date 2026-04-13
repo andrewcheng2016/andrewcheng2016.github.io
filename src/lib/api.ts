@@ -63,7 +63,7 @@ export function getPostBySlug(type: "toys" | "papers", slug: string): Post | nul
       date: data.date ? new Date(data.date).toISOString() : "",
       lastmod: data.lastmod ? new Date(data.lastmod).toISOString() : null,
     } as Post;
-  } catch (err) {
+  } catch {
     return null;
   }
 }

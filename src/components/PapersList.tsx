@@ -1,9 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link"; // 引入 Link
-import { BookOpen, Calendar } from "lucide-react";
+import Link from "next/link";
+import { Calendar } from "lucide-react";
+import type { Post } from "@/lib/api";
 
-export default function PapersList({ papers }: { papers: any[] }) {
+export default function PapersList({ papers }: { papers: Post[] }) {
   return (
     <div className="min-h-screen bg-p5-black text-p5-white p-8 font-sans selection:bg-p5-red selection:text-white">
       <Link href="/" className="font-anton text-xl text-p5-red hover:underline mb-8 block hover:translate-x-2 transition-transform">&larr; BACK TO HOME PAGE</Link>

@@ -3,110 +3,78 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Github, FileDown, ExternalLink, Globe, BookOpen } from "lucide-react";
+import { Github, FileDown, ExternalLink, BookOpen } from "lucide-react";
 
-// --- 翻譯字典 ---
-const translations = {
-  en: {
-    nameTop: "CHENG",
-    nameBottom: "Chi Chung",
-    role: "Research Assistant",
-    loc: "HONG KONG",
-    focus: "AI & WEB Development",
-    summaryTitle: "PROFILE SUMMARY",
-    summary: (
+const copy = {
+   nameTop: "CHENG",
+   nameBottom: "Chi Chung",
+   role: "Research Assistant",
+   loc: "HONG KONG",
+   focus: "AI & WEB Development",
+   summaryTitle: "PROFILE SUMMARY",
+   summary: (
       <>
-        Passionate about bridging academic research and real-world applications. 
-        Specialized in <strong className="text-white">Computer Vision</strong> and <strong className="text-white">Web Development</strong>. 
-        Experienced in building scalable systems using Django, React.js, Next.js, and other modern web technologies.
+         Passionate about bridging academic research and real-world applications.
+         Specialized in <strong className="text-white">Computer Vision</strong> and <strong className="text-white">Web Development</strong>.
+         Experienced in building scalable systems using Django, React.js, Next.js, and other modern web technologies.
       </>
-    ),
-    expTitle: "WORK EXPERIENCE",
-    eduTitle: "EDUCATION", 
-    tblDegree: "DEGREE",
-    tblSchool: "SCHOOL",
-    tblYear: "YEAR",
-    tblRole: "ROLE",
-    tblOrg: "ORGANIZATION / DETAILS",
-    techTitle: "TECH STACK",
-    pubTitle: "PUBLICATIONS & PATENTS",
-    download: "DOWNLOAD CV"
-  },
-  zh: {
-    nameTop: "鄭",
-    nameBottom: "智聰",
-    role: "研究助理",
-    loc: "香港",
-    focus: "人工智能與網站開發",
-    summaryTitle: "個人簡介",
-    summary: (
-      <>
-        熱衷於將學術研究轉化為實際應用。
-        專精於 <strong className="text-white">電腦視覺 (CV)</strong> 與 <strong className="text-white">網站開發</strong>。
-        擁有使用 Django, React.js 與 Next.js 等等建構可擴展系統的豐富經驗。
-      </>
-    ),
-    expTitle: "工作經驗",
-    eduTitle: "學歷背景",
-    tblDegree: "學位",
-    tblSchool: "學校",
-    tblYear: "年份",
-    tblRole: "角色",
-    tblOrg: "機構 / 內容",
-    techTitle: "技能",
-    pubTitle: "論文與專利",
-    download: "下載履歷 PDF"
-  }
+   ),
+   expTitle: "WORK EXPERIENCE",
+   eduTitle: "EDUCATION",
+   tblDegree: "DEGREE",
+   tblSchool: "SCHOOL",
+   tblYear: "YEAR",
+   tblRole: "ROLE",
+   tblOrg: "ORGANIZATION / DETAILS",
+   techTitle: "TECH STACK",
+   pubTitle: "PUBLICATIONS & PATENTS",
+   download: "DOWNLOAD CV"
 };
 
-// --- 工作經歷資料 ---
-const getExperiences = (lang: 'en' | 'zh') => [
+const experiences = [
   {
     year: "2023 - 2025",
-    role: lang === 'en' ? "Research Assistant" : "研究助理",
-    org: lang === 'en' ? "Hong Kong Chu Hai College" : "香港珠海學院",
-    desc: lang === 'en' 
-      ? "Research on image segmentation for gum disease detection." 
-      : "研究用於牙齦疾病檢測的圖像分割技術。"
+      role: "Research Assistant",
+      org: "Hong Kong Chu Hai College",
+      desc: "Research on image segmentation for gum disease detection."
   },
   {
     year: "2021 - 2023",
-    role: lang === 'en' ? "Research Postgraduate" : "研究式研究生",
-    org: lang === 'en' ? "The Hong Kong Polytechnic University" : "香港理工大學",
-    desc: lang === 'en'
-      ? "Research on interpretable neural networks via principal component analysis."
-      : "研究基於主成分分析 (PCA) 的可解釋神經網絡。"
+      role: "Research Postgraduate",
+      org: "The Hong Kong Polytechnic University",
+      desc: "Research on interpretable neural networks via principal component analysis."
   },
   {
     year: "2021",
-    role: lang === 'en' ? "Undergraduate" : "本科生 (FYP)",
-    org: lang === 'en' ? "The Hong Kong Polytechnic University" : "香港理工大學",
-    desc: lang === 'en'
-      ? "Active noise cancellation with convolutional neural networks (Final Year Project)."
-      : "使用卷積神經網絡 (CNN) 進行主動降噪 (畢業專題)。"
+      role: "Undergraduate",
+      org: "The Hong Kong Polytechnic University",
+      desc: "Active noise cancellation with convolutional neural networks (Final Year Project)."
   },
   {
     year: "2020",
-    role: lang === 'en' ? "Summer Intern" : "暑期實習生",
-    org: lang === 'en' ? "Electrical and Mechanical Services Department" : "機電工程署 (EMSD)",
-    desc: lang === 'en'
-      ? "Developed IoT project using Arduino (ESP32) with mobile-controlled DHT11 sensors via Blynk cloud."
-      : "開發 IoT 專案：使用 Arduino (ESP32) 與 Blynk 雲端控制 DHT11 傳感器。"
+      role: "Summer Intern",
+      org: "Electrical and Mechanical Services Department",
+      desc: "Developed IoT project using Arduino (ESP32) with mobile-controlled DHT11 sensors via Blynk cloud."
   }
 ];
 
-const getEducation = (lang: 'en' | 'zh') => [
+const education = [
   {
     year: "2021",
-    school: lang === 'en' ? "The Hong Kong Polytechnic University" : "香港理工大學",
-    degree: lang === 'en' 
-      ? "BEng (1st Hons) Electronic & Information Engineering" 
-      : "電子及資訊工程學工學士 (一級榮譽)"
+      school: "The Hong Kong Polytechnic University",
+      degree: "BEng (1st Hons) Electronic & Information Engineering"
   }
 ];
 
 // --- 論文資料 ---
 const publications = [
+   {
+      type: "Journal",
+      title: "External Validation of a mHealth Tool for Detecting Gingival Inflammation in Community-Dwelling Older Adults",
+      venue: "Submitted to Journal of Dentistry (Feb 13, 2026)",
+      authors: "Reinhard Chun Wang Chau, Zhuohong Gong, Andrew Chi Chung Cheng, Kaijing Mao, Khaing Myat Thu, Ruonan Zhang, Tien Hsing Chang, Hong Jin Tan, Harris Sik-Ho Tsang, Maurizio S. Tonetti, Falk Schwendicke, Richard Tai-Chiu Hsung, Walter Yu Hang Lam",
+      link: null
+   },
   {
     type: "Conference",
     title: "GumAgent: Towards an Accessible Gum Disease Detection Tool Leveraging Vision Language Model",
@@ -139,17 +107,14 @@ const publications = [
 
 // --- 背景特效組件 ---
 const BackgroundFX = () => {
-  const [stars, setStars] = useState<{ id: number; x: string; duration: number; delay: number }[]>([]);
-
-  useEffect(() => {
-    const starData = [...Array(6)].map((_, i) => ({
+   const [stars] = useState<{ id: number; x: string; duration: number; delay: number }[]>(() =>
+      [...Array(6)].map((_, i) => ({
       id: i,
       x: Math.random() * 100 + "vw",
       duration: Math.random() * 5 + 10,
       delay: Math.random() * 2
-    }));
-    setStars(starData);
-  }, []);
+      }))
+   );
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1] bg-p5-black">
@@ -188,14 +153,9 @@ const BackgroundFX = () => {
 
 export default function Home() {
   const [time, setTime] = useState({ month: "--", day: "--", hours: "--", minutes: "--", ampm: "--" });
-  const [mounted, setMounted] = useState(false);
-  const [lang, setLang] = useState<'en' | 'zh'>('en');
-  const t = translations[lang];
-  const experiences = getExperiences(lang);
-  const education = getEducation(lang);
+   const t = copy;
 
   useEffect(() => {
-    setMounted(true);
     const updateClock = () => {
       const now = new Date();
       let h = now.getHours();
@@ -208,8 +168,6 @@ export default function Home() {
     updateClock();
     return () => clearInterval(timer);
   }, []);
-
-  if (!mounted) return null;
 
   return (
     <main className="min-h-screen bg-transparent text-p5-white overflow-hidden font-sans selection:bg-p5-red selection:text-white pb-20">
@@ -225,12 +183,7 @@ export default function Home() {
           </div>
           
           <div className="flex items-center gap-6">
-             <Link href="/toys" className="hidden md:block font-anton hover:text-p5-red transition-colors hover:translate-x-1 hover:-translate-y-1">TOYS</Link>
              <Link href="/papers" className="hidden md:block font-anton hover:text-p5-red transition-colors hover:translate-x-1 hover:-translate-y-1">PAPERS</Link>
-             
-             <button onClick={() => setLang(lang === 'en' ? 'zh' : 'en')} className="flex items-center gap-1 font-anton border border-white px-2 py-1 hover:bg-white hover:text-black transition-all">
-               <Globe size={16} />{lang === 'en' ? '中文' : 'EN'}
-             </button>
 
              <div className="hidden md:flex flex-col items-end leading-none border-l-2 border-gray-600 pl-3">
                <div className="text-sm font-anton text-white bg-p5-black px-1 border border-white -skew-x-12 mb-1">{time.month}/{time.day}</div>
