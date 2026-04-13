@@ -14,6 +14,15 @@ export default function PapersList({ papers }: { papers: Post[] }) {
       </h1>
 
       <div className="flex flex-col gap-6 max-w-5xl mx-auto">
+        {papers.length === 0 && (
+          <div className="border border-gray-700 bg-p5-gray/50 p-8 text-center">
+            <div className="font-anton text-3xl text-white mb-3">NO PAPERS YET</div>
+            <p className="text-gray-300 text-base leading-7">
+              This section is currently empty. Add a paper entry when you are ready to publish one.
+            </p>
+          </div>
+        )}
+
         {papers.map((paper, i) => (
           <motion.div
             key={paper.slug}
