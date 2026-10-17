@@ -416,23 +416,7 @@ export default function HomePageClient({ cv }: { cv: CvData }) {
                 </div>
               </div>
 
-              <div className="flex flex-col justify-center gap-3">
-                <div className="flex flex-wrap gap-2">
-                  {["FREE STATIC DEPLOY", "GITHUB PAGES", "CUSTOM DOMAIN READY"].map((label) => (
-                    <span
-                      key={label}
-                      className="inline-flex items-center rounded-full border border-p5-red/60 bg-black px-3 py-1 font-anton text-xs tracking-[0.2em] text-p5-red"
-                    >
-                      {label}
-                    </span>
-                  ))}
-                </div>
-                <p className="max-w-md text-sm leading-6 text-gray-400">
-                  Scroll down to move through chapters with fade transitions, one section at a time.
-                </p>
-              </div>
-            </div>
-
+      
             <ChapterPanel chapter="summary" cv={cv} />
           </div>
         </motion.section>
