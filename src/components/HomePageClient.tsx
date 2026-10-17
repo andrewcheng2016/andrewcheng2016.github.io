@@ -400,23 +400,21 @@ export default function HomePageClient({ cv }: { cv: CvData }) {
           </div>
 
           <div className="lg:col-span-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 border-b-2 border-gray-700 pb-8 mt-2">
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <span className="font-anton text-p5-red text-xl w-24">ROLE:</span>
-                  <span className="font-anton text-2xl">{cv.role}</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="font-anton text-p5-red text-xl w-24">LOC:</span>
-                  <span className="font-anton text-2xl">{cv.loc}</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="font-anton text-p5-red text-xl w-24">FOCUS:</span>
-                  <span className="font-anton text-2xl">{cv.focus}</span>
-                </div>
+            <div className="space-y-4 mb-10 border-b-2 border-gray-700 pb-8 mt-2">
+              <div className="flex items-center gap-4">
+                <span className="font-anton text-p5-red text-xl w-24">ROLE:</span>
+                <span className="font-anton text-2xl">{cv.role}</span>
               </div>
+              <div className="flex items-center gap-4">
+                <span className="font-anton text-p5-red text-xl w-24">LOC:</span>
+                <span className="font-anton text-2xl">{cv.loc}</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="font-anton text-p5-red text-xl w-24">FOCUS:</span>
+                <span className="font-anton text-2xl">{cv.focus}</span>
+              </div>
+            </div>
 
-      
             <ChapterPanel chapter="summary" cv={cv} />
           </div>
         </motion.section>
