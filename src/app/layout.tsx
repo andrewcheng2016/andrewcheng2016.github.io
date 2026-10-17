@@ -1,23 +1,30 @@
 import type { Metadata } from "next";
-import { Anton, Noto_Sans_TC } from "next/font/google";
+import { Orbitron, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const metadataBase = new URL(siteUrl);
+
 // 設定字體
-const anton = Anton({ 
-  weight: "400", 
+const orbitron = Orbitron({
+  weight: ["500", "700", "800"],
   subsets: ["latin"],
-  variable: "--font-anton",
+  variable: "--font-display",
 });
 
-const notoSans = Noto_Sans_TC({ 
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-  variable: "--font-noto",
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
   title: "Andrew's Space",
   description: "Developer & Researcher Portfolio",
+  metadataBase,
+  alternates: {
+    canonical: "/",
+  },
 
   icons:{
     icon: '/images/favicon.png'
@@ -37,7 +44,7 @@ export default function RootLayout({
       */}
       <body 
         suppressHydrationWarning={true}
-        className={`${anton.variable} ${notoSans.variable} bg-p5-black text-p5-white overflow-x-hidden font-sans`}
+        className={`${orbitron.variable} ${spaceGrotesk.variable} bg-p5-black text-p5-white overflow-x-hidden font-sans`}
       >
         <div className="fixed inset-0 z-[-1] opacity-50 bg-p5-pattern bg-[length:20px_20px]" />
         {children}

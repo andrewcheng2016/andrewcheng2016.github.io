@@ -6,17 +6,60 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  # 1. Toys 設定
-  - name: "toys"
-    label: "🧸 Toys"
-    folder: "src/content/toys"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Description", name: "body", widget: "markdown"}
+  # 1. CV 設定
+  - name: "cv"
+    label: "📇 CV"
+    files:
+      - file: "src/content/cv.md"
+        label: "CV"
+        name: "cv"
+        fields:
+          - {label: "Name Top", name: "nameTop", widget: "string"}
+          - {label: "Name Bottom", name: "nameBottom", widget: "string"}
+          - {label: "Role", name: "role", widget: "string"}
+          - {label: "Location", name: "loc", widget: "string"}
+          - {label: "Focus", name: "focus", widget: "string"}
+          - {label: "Summary Title", name: "summaryTitle", widget: "string"}
+          - {label: "Summary", name: "summary", widget: "text"}
+          - {label: "Experience Title", name: "expTitle", widget: "string"}
+          - {label: "Education Title", name: "eduTitle", widget: "string"}
+          - {label: "Table Degree Label", name: "tblDegree", widget: "string"}
+          - {label: "Table School Label", name: "tblSchool", widget: "string"}
+          - {label: "Table Year Label", name: "tblYear", widget: "string"}
+          - {label: "Table Role Label", name: "tblRole", widget: "string"}
+          - {label: "Table Org Label", name: "tblOrg", widget: "string"}
+          - {label: "Tech Title", name: "techTitle", widget: "string"}
+          - {label: "Publication Title", name: "pubTitle", widget: "string"}
+          - {label: "Download Label", name: "download", widget: "string"}
+          - {label: "Download URL", name: "downloadUrl", widget: "string"}
+          - label: "Work Experience"
+            name: "experiences"
+            widget: "list"
+            fields:
+              - {label: "Year", name: "year", widget: "string"}
+              - {label: "Role", name: "role", widget: "string"}
+              - {label: "Organization", name: "org", widget: "string"}
+              - {label: "Description", name: "desc", widget: "text"}
+          - label: "Education"
+            name: "education"
+            widget: "list"
+            fields:
+              - {label: "Year", name: "year", widget: "string"}
+              - {label: "School", name: "school", widget: "string"}
+              - {label: "Degree", name: "degree", widget: "string"}
+          - label: "Tech Stack"
+            name: "skills"
+            widget: "list"
+            field: {label: "Skill", name: "skill", widget: "string"}
+          - label: "Publications"
+            name: "publications"
+            widget: "list"
+            fields:
+              - {label: "Type", name: "type", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Venue", name: "venue", widget: "string"}
+              - {label: "Authors", name: "authors", widget: "text"}
+              - {label: "Link", name: "link", widget: "string", required: false}
 
   # 2. Papers 設定
   - name: "papers"

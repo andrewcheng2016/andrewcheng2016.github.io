@@ -2,4 +2,108 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 這裡可以之後加一些自定義的 CSS，目前先留空 */
+.matrix-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none;
+	background: radial-gradient(circle at 20% 20%, rgba(0, 140, 90, 0.18), transparent 55%),
+		linear-gradient(180deg, #020604 0%, #010302 60%, #000000 100%);
+	transition: background 500ms ease, filter 500ms ease;
+}
+
+.matrix-vignette {
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(circle at center, transparent 38%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.matrix-scanlines {
+	position: absolute;
+	inset: 0;
+	background: repeating-linear-gradient(
+		to bottom,
+		rgba(110, 255, 160, 0.06),
+		rgba(110, 255, 160, 0.06) 1px,
+		transparent 1px,
+		transparent 4px
+	);
+	opacity: 0.35;
+}
+
+.matrix-rain {
+	position: absolute;
+	inset: 0;
+	opacity: 0.38;
+}
+
+.matrix-column {
+	position: absolute;
+	top: -40%;
+	width: 2.5%;
+	color: #8effb8;
+	font-size: 12px;
+	font-family: "Courier New", monospace;
+	letter-spacing: 0.2em;
+	line-height: 1.4;
+	text-shadow: 0 0 8px rgba(130, 255, 175, 0.45);
+	writing-mode: vertical-rl;
+	opacity: 0.55;
+	animation-name: matrix-fall;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.matrix-chapter-glow {
+	position: absolute;
+	inset: -20% -10%;
+	filter: blur(60px);
+	opacity: 0.25;
+	transition: opacity 400ms ease, transform 500ms ease, background 500ms ease;
+}
+
+.matrix-chapter-intro .matrix-chapter-glow {
+	background: radial-gradient(circle at 15% 25%, rgba(80, 255, 130, 0.35), transparent 55%);
+}
+
+.matrix-chapter-summary .matrix-chapter-glow {
+	background: radial-gradient(circle at 30% 40%, rgba(130, 230, 255, 0.35), transparent 55%);
+	opacity: 0.3;
+}
+
+.matrix-chapter-experience .matrix-chapter-glow {
+	background: radial-gradient(circle at 65% 40%, rgba(120, 255, 150, 0.38), transparent 55%);
+	transform: translateX(4%);
+}
+
+.matrix-chapter-education .matrix-chapter-glow {
+	background: radial-gradient(circle at 55% 35%, rgba(255, 255, 255, 0.26), transparent 55%);
+}
+
+.matrix-chapter-tech .matrix-chapter-glow {
+	background: radial-gradient(circle at 80% 38%, rgba(90, 220, 255, 0.36), transparent 55%);
+	transform: translateX(-2%);
+}
+
+.matrix-chapter-publications .matrix-chapter-glow {
+	background: radial-gradient(circle at 50% 65%, rgba(255, 80, 80, 0.3), transparent 60%);
+	opacity: 0.33;
+}
+
+@keyframes matrix-fall {
+	0% {
+		transform: translateY(-30vh);
+		opacity: 0;
+	}
+	12% {
+		opacity: 0.55;
+	}
+	90% {
+		opacity: 0.4;
+	}
+	100% {
+		transform: translateY(145vh);
+		opacity: 0;
+	}
+}

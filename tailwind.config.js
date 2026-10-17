@@ -16,8 +16,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        anton: ["var(--font-anton)"],
-        sans: ["var(--font-noto)"],
+        anton: ["var(--font-display)"],
+        sans: ["var(--font-body)"],
       },
       backgroundImage: {
         // 1. 基礎網格紋理 (之前設定的，這個要留著做底圖)
