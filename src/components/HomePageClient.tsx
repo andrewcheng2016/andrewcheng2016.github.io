@@ -359,15 +359,8 @@ export default function HomePageClient({ cv }: { cv: CvData }) {
               </div>
             </div>
 
-            <div className="relative w-64 h-64 group cursor-pointer mx-auto lg:mx-0">
-              <div className="absolute inset-0 border-4 border-p5-red bg-black overflow-hidden shadow-[0_0_20px_rgba(211,25,25,0.6)]">
-                <img src="/profile_p5.jpg" alt="P5 Style" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-p5-dots opacity-20 mix-blend-overlay pointer-events-none" />
-              </div>
-              <div className="absolute inset-0 border-4 border-white bg-black transition-all duration-300 ease-out group-hover:opacity-0 group-hover:scale-110 z-10">
-                <img src="/profile.jpg" alt="Profile" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-p5-red mix-blend-color-burn opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
-              </div>
+            <div className="relative w-64 h-64 mx-auto lg:mx-0 border-4 border-white bg-black overflow-hidden">
+              <img src="/profile.jpg" alt="Profile" className="w-full h-full object-cover" />
               <div className="absolute -bottom-4 -right-8 bg-black text-white font-anton px-4 py-1 text-lg -rotate-3 border-2 border-white z-20 shadow-[4px_4px_0_#d31919]">
                 ANDREW
               </div>
