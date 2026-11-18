@@ -359,7 +359,7 @@ export default function HomePageClient({ cv }: { cv: CvData }) {
               </div>
             </div>
 
-            <div className="relative w-64 h-64 mx-auto lg:mx-0 border-4 border-white bg-black overflow-hidden">
+            <div className="relative w-64 h-64 mx-auto lg:mx-0 border-4 border-white bg-black">
               <img src="/profile.jpg" alt="Profile" className="w-full h-full object-cover" />
               <div className="absolute -bottom-4 -right-8 bg-black text-white font-anton px-4 py-1 text-lg -rotate-3 border-2 border-white z-20 shadow-[4px_4px_0_#d31919]">
                 ANDREW
