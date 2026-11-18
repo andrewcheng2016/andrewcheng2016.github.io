@@ -360,7 +360,9 @@ export default function HomePageClient({ cv }: { cv: CvData }) {
             </div>
 
             <div className="relative w-64 h-64 mx-auto lg:mx-0 border-4 border-white bg-black">
-              <img src="/profile.jpg" alt="Profile" className="w-full h-full object-cover" />
+              <div className="flex h-full w-full justify-center overflow-hidden bg-white">
+                <img src="/profile.jpg" alt="Profile" className="h-full w-full origin-[center_20%] scale-[1.25] object-cover object-[center_18%]" />
+              </div>
               <div className="absolute -bottom-4 -right-8 bg-black text-white font-anton px-4 py-1 text-lg -rotate-3 border-2 border-white z-20 shadow-[4px_4px_0_#d31919]">
                 ANDREW
               </div>
