@@ -77,7 +77,7 @@ publications:
       Chaojun Tan, Andrew Chi-Chung Cheng, Harris Sik-Ho Tsang, Richard Tai-Chiu
       Hsung*, Wai-Lun Lo,
 
-      Alex Yun-sang Sum, Winnie Wing-Shan Choi, and Teddy Weifa Yang
+      Alex Yun-sang Sum, Winnie Wing-Shan Choi, and Teddy Weifa Yang 
   - type: Journal
     title: External Validation of a mHealth Tool for Detecting Gingival Inflammation
       in Community-Dwelling Older Adults
