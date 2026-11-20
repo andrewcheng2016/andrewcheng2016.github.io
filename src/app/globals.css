@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--font-display: "Orbitron Variable", sans-serif;
+	--font-body: "Space Grotesk Variable", sans-serif;
+}
+
 .matrix-backdrop {
 	position: fixed;
 	inset: 0;

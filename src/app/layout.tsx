@@ -1,22 +1,10 @@
 import type { Metadata } from "next";
-import { Orbitron, Space_Grotesk } from "next/font/google";
+import "@fontsource-variable/orbitron";
+import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const metadataBase = new URL(siteUrl);
-
-// 設定字體
-const orbitron = Orbitron({
-  weight: ["500", "700", "800"],
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-body",
-});
 
 export const metadata: Metadata = {
   title: "Andrew's Space",
@@ -44,7 +32,7 @@ export default function RootLayout({
       */}
       <body 
         suppressHydrationWarning={true}
-        className={`${orbitron.variable} ${spaceGrotesk.variable} bg-p5-black text-p5-white overflow-x-hidden font-sans`}
+        className="bg-p5-black text-p5-white overflow-x-hidden font-sans"
       >
         <div className="fixed inset-0 z-[-1] opacity-50 bg-p5-pattern bg-[length:20px_20px]" />
         {children}

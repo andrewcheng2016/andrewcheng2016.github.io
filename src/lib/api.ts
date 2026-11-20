@@ -64,13 +64,10 @@ export interface Post {
   authors?: string;
   link?: string;
   type?: string;
-
-  // Toys 專用欄位
-  image?: string;
 }
 
 // 2. 讀取所有文章列表
-export function getContent(type: "toys" | "papers"): Post[] {
+export function getContent(type: "papers"): Post[] {
   const dir = path.join(contentDirectory, type);
   if (!fs.existsSync(dir)) return [];
 
@@ -96,7 +93,7 @@ export function getContent(type: "toys" | "papers"): Post[] {
 }
 
 // 3. 讀取單篇文章
-export function getPostBySlug(type: "toys" | "papers", slug: string): Post | null {
+export function getPostBySlug(type: "papers", slug: string): Post | null {
   try {
     const fullPath = path.join(contentDirectory, type, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf8");

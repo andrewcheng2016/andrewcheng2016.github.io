@@ -16,7 +16,7 @@ tblOrg: "ORGANIZATION / DETAILS"
 techTitle: "TECH STACK"
 pubTitle: "PUBLICATIONS & PATENTS"
 download: "DOWNLOAD CV"
-downloadUrl: "/ChengChiChung_CV_20260413.pdf"
+downloadUrl: "/ChengChiChung_CV_20261120.pdf"
 experiences:
   - year: "2023 - 2025"
     role: "Research Assistant"
